@@ -3,7 +3,7 @@ package sistema.modelos;
 import java.util.Enumeration;
 import java.util.List;
 
-import enumeration.EnumSexo;
+//import enumeration.EnumSexo;
 
 public class Categoria {
 	private String nome;
@@ -13,7 +13,7 @@ public class Categoria {
 	private List<Fase> fases;
 	private int minJogadores;
 	private int maxJogadores;
-	private Enumeration<EnumSexo> sexo;
+//	private Enumeration<EnumSexo> sexo;
 	private int attribute74;
 	public String getNome() {
 		return nome;
@@ -63,11 +63,11 @@ public class Categoria {
 	public void setFases(List<Fase> fases) {
 		this.fases = fases;
 	}
-	public Enumeration<EnumSexo> getSexo() {
-		return sexo;
-	}
-	public void setSexo(Enumeration<EnumSexo> sexo) {
-		this.sexo = sexo;
-	}
+//	public Enumeration<EnumSexo> getSexo() {
+//		return sexo;
+//	}
+//	public void setSexo(Enumeration<EnumSexo> sexo) {
+//		this.sexo = sexo;
+//	}
 	
 }

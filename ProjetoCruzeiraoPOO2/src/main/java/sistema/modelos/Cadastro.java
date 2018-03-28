@@ -6,14 +6,8 @@ public class Cadastro {
 	private String email;
 	private String nome;
 	private String senha;
-	private Categoria categoria;
-	
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+	private String tipo;
+
 	public String getEmail() {
 		return email;
 	}
@@ -31,6 +25,12 @@ public class Cadastro {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	
