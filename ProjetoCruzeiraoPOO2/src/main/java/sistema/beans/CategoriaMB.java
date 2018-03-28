@@ -59,18 +59,18 @@ public class CategoriaMB {
         this.categoria.setMaxJogadores(maxJogadores);
     }
     
-	public int getMaxTimes() {
-        return this.categoria.getMaxTimes();
-    }
+//	public int getMaxTimes() {
+//        return this.categoria.getMaxTimes();
+//    }
  
     public void maxTimes(int maxTimes) {
         this.categoria.setMaxJogadores(maxTimes);
     }
     
-    public void setSexo(String sexo) {
-    	    if(sexo == "Masc") this.categoria.setSexo(Masculino);
-    	    else this.categoria.setSexo(Feminino);
-    }
+//    public void setSexo(String sexo) {
+//    	    if(sexo == "Masc") this.categoria.setSexo(Masculino);
+//    	    else this.categoria.setSexo(Feminino);
+//    }
     
     public void onInputChanged(ValueChangeEvent event) {
         FacesMessage message = new FacesMessage("Input Changed", "Value: " + event.getNewValue());

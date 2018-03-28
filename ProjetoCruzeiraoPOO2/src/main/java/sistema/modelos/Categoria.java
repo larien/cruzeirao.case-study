@@ -1,36 +1,32 @@
+
 package sistema.modelos;
 
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
-
 import enumeration.EnumSexoTipo;
+//import enumeration.EnumSexo;
 
 public class Categoria {
 	private String nome;
-	private Date nascidosApartirDe;
+	private int nascidosApartirDe;
 	private List<Inscricao> inscricoes;
 	private Campeonato campeonato;
 	private List<Fase> fases;
 	private int minJogadores;
 	private int maxJogadores;
-	private int minTimes;
-	private int maxTimes;
-	private Enumeration<EnumSexoTipo> sexo;
+//	private Enumeration<EnumSexo> sexo;
 	private int attribute74;
-	
-	
-	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getNascidosApartirDe() {
+	public int getNascidosApartirDe() {
 		return nascidosApartirDe;
 	}
-	public void setNascidosApartirDe(Date nascidosApartirDe) {
+	public void setNascidosApartirDe(int nascidosApartirDe) {
 		this.nascidosApartirDe = nascidosApartirDe;
 	}
 	public Campeonato getCampeonato() {
@@ -44,18 +40,6 @@ public class Categoria {
 	}
 	public void setMinJogadores(int minJogadores) {
 		this.minJogadores = minJogadores;
-	}
-	public int getMaxTimes() {
-		return maxTimes;
-	}
-	public void setMaxTimes(int maxTimes) {
-		this.maxTimes = maxTimes;
-	}
-	public int getMinTimes() {
-		return minTimes;
-	}
-	public void setMinTimes(int minTimes) {
-		this.minTimes = minTimes;
 	}
 	public int getMaxJogadores() {
 		return maxJogadores;
@@ -81,11 +65,11 @@ public class Categoria {
 	public void setFases(List<Fase> fases) {
 		this.fases = fases;
 	}
-	public Enumeration<EnumSexoTipo> getSexo() {
-		return sexo;
-	}
-	public void setSexo(Enumeration<EnumSexoTipo> sexo) {
-		this.sexo = sexo;
-	}
+//	public Enumeration<EnumSexo> getSexo() {
+//		return sexo;
+//	}
+//	public void setSexo(Enumeration<EnumSexo> sexo) {
+//		this.sexo = sexo;
+//	}
 	
 }
