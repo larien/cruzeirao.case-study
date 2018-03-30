@@ -48,15 +48,16 @@
 	                 update=":formCategoria, :tabelaCategoria"/>
        </h:form>
 	
-   <p:dataTable value="#{CategoriaManagedBean.Categorias}"
+   <p:dataTable value="#{categoriaMB.categorias}"
                 var="aux"
                 id="tabelaCategoria">
+                
                 
       <p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
         <p:outputLabel value="#{aux.nome}" />
       </p:column>
       <p:column headerText="#{msg['pages.cadastroCategoria.nascidosApartirDe']}">
-        <p:outputLabel value="#{aux.idadeMin}" />
+        <p:outputLabel value="#{aux.nascidosApartirDe}" />
       </p:column>
       <p:column headerText="#{msg['pages.cadastroCategoria.sexo']}">
         <p:outputLabel value="#{aux.sexo}" />

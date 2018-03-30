@@ -34,6 +34,9 @@ public class CategoriaMB {
 	{
 		service.salvar(categoria);
 		categoria = new Categoria();
+		for (Categoria c : service.getCategorias()) {
+			System.out.println(c);
+		}
 	}
 	
 	public Categoria getCategoria() {

@@ -20,14 +20,6 @@ public class Campeonato {
 	private Date dataInicioCampeonato;
 	private Date dataFimCampeonato;
 	private double valorTaxa;
-	/*
-	public Campeonato() 
-	{
-		this.locais = new ArrayList<Local>();
-		this.juizes = new ArrayList<Juiz>();
-		this.categorias = new ArrayList<Categoria>();
-	}
-	*/
 	public String getNome() {
 		return nome;
 	}
