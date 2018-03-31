@@ -1,24 +1,24 @@
 package sistema.beans;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
+//import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
+//import javax.faces.context.FacesContext;
 
-import org.primefaces.PrimeFaces;
+//import org.primefaces.PrimeFaces;
 import org.primefaces.event.DragDropEvent;
-import org.primefaces.event.SelectEvent;
+//import org.primefaces.event.SelectEvent;
+import org.primefaces.event.FlowEvent;
 
 import sistema.modelos.Campeonato;
 import sistema.modelos.Juiz;
 import sistema.modelos.Local;
-import sistema.modelos.Categoria;
 import sistema.service.CampeonatoService;
 
 @ManagedBean(eager=true, name="campeonatoMB")
@@ -71,6 +71,7 @@ public class CampeonatoMB {
 				return;
 		this.campeonato.getLocais().add(local);
     }
+	/*
 	public void abrirOpcoesCampeonato() {
 	
         Map<String,Object> options = new HashMap<String, Object>();
@@ -80,5 +81,25 @@ public class CampeonatoMB {
     }
 	public void retornoOpcoesCampeonato(SelectEvent event) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Returned", event.getObject().toString()));
+    }
+	 */
+    private boolean skip;
+
+    
+    public boolean isSkip() {
+        return skip;
+    }
+ 
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
+	public String onFlowProcess(FlowEvent event) {
+        if(skip) {
+            skip = false;   //reset in case user goes back
+            return "confirm";
+        }
+        else {
+            return event.getNewStep();
+        }
     }
 }

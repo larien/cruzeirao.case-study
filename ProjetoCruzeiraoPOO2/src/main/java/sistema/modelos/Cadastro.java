@@ -30,6 +30,4 @@ public class Cadastro {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	
 }

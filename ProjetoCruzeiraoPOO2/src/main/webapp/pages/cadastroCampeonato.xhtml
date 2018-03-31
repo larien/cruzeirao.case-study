@@ -22,6 +22,7 @@
 	  <h1><p:outputLabel value="#{msg['pages.cadastroCampeonato.menu']}"/></h1>
 	  
 	  <h:form id="formCampeonato">	
+	  <p:growl id="growl" showDetail="true" />
 	  <p:panelGrid columns="2">
 	  <p:outputLabel value="#{msg['pages.cadastroCampeonato.nome']}" />
       <p:inputText value="#{campeonatoMB.campeonato.nome}"/>
@@ -44,21 +45,104 @@
       <p:commandButton id="juizBtn" value="#{msg['pages.cadastroCampeonato.juiz']}" type="button" />
       
       <p:outputLabel value="#{msg['pages.cadastroCampeonato.categoria']}" />
-	  <p:growl id="growl" showDetail="true" />
-      <p:commandButton id="categoriaBtn" value="#{msg['pages.cadastroCampeonato.categoria']}" icon="ui-icon-extlink" actionListener="#{campeonatoMB.abrirOpcoesCampeonato}">
-        <p:ajax event="dialogReturn" listener="#{campeonatoMB.retornoOpcoesCampeonato}" update="growl"/>
-      </p:commandButton>
+	  <p:commandButton oncomplete="PF('sidebar5').show()"  value="#{msg['pages.cadastroCampeonato.categoria']}" />
+
+	  </p:panelGrid>
+	  
+      <!-- 
+      Abertura de side bar com fullscreen para mostrar ao usuario, mas por algum motivo
+      isso ta bugando
+       -->
+      <!-- 
+      Comando que estava antes
+       -->	  
       <!-- 
       <p:commandButton id="categoriaBtn" value="#{msg['pages.cadastroCampeonato.categoria']}" type="button" />
        -->
-	  </p:panelGrid>
- 
-    
-    
-	  	  
-	 
-
+	    <p:sidebar widgetVar="sidebar5" fullScreen="true" baseZIndex="10000">
+	    
+	    <h1><p:outputLabel value="#{msg['pages.cadastroCategoria.menu']}"/></h1>
 	  
+	    <h1 style="font-weight:normal">Ohhh aqui vai um texto!!!</h1>
+	    <h2 style="font-weight:normal">Seria bom listar os campeonatos cadastrados?</h2>
+	    <p:dataTable id="campeonatosCadastrados" var="categoria" value="#{campeonatoMB.campeonato.categorias}">
+			<p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
+		    	<h:outputText value="#{categoria.nome}" />
+		    </p:column>
+		 
+		</p:dataTable>
+	    <!-- sistema de wizard para gravar uma categoria no campeonato??? -->
+	    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+	        <p:tab id="personal" title="#{msg['pages.cadastroCampeonato.categoria']}">
+	            <h:form>	
+				  <p:panelGrid columns="2">
+				  
+				  <p:outputLabel value="#{msg['pages.cadastroCategoria.nome']}" />
+			      <p:inputText value="#{categoriaMB.categoria.nome}"/>
+			      
+			      <p:outputLabel value="#{msg['pages.cadastroCategoria.nascidosApartirDe']}" />
+				  <p:calendar value="#{categoriaMB.categoria.nascidosApartirDe}"/>
+			      
+			       <p:outputLabel value="#{msg['pages.cadastroCategoria.sexo']}" />
+			       <p:selectOneRadio id="sexoRadio" value="{categoriaMB.setSexo}">
+			            <f:selectItem itemLabel="Masculino" itemValue="Masc" />
+			            <f:selectItem itemLabel="Feminino" itemValue="Fem" />
+			        </p:selectOneRadio>
+			            
+			        <p:outputLabel value="#{msg['pages.cadastroCategoria.maxJogadores']}" />
+			        <p:inputText id="slider1" value="#{categoriaMB.categoria.maxJogadores}" style=" margin-top: 10px">
+			        			<p:slider for="slider1" style=" margin-top: 10px"/>
+			        </p:inputText>
+			        
+			        <p:outputLabel value="#{msg['pages.cadastroCategoria.maxTimes']}" />
+			        <p:inputText id="slider2" value="#{categoriaMB.categoria.maxTimes}" style=" margin-top: 10px">
+			        		<p:slider for="slider2" style=" margin-top: 10px"/>
+			        </p:inputText>
+			            
+				  </p:panelGrid>
+			      
+       			</h:form>
+	        </p:tab>
+	 
+	        <p:tab id="address" title="Precisa de outra aba?">
+	            <p:panel header="Address Details">
+	                <p:messages />
+	                <h:panelGrid columns="2" columnClasses="label, value">
+	                </h:panelGrid>
+	            </p:panel>
+	        </p:tab>
+	 
+	        <p:tab id="contact" title="e Mais outra?">
+	            <p:panel header="Contact Information">
+	                <p:messages />
+	                <h:panelGrid columns="2" columnClasses="label, value">
+	                </h:panelGrid>
+	            </p:panel>
+	        </p:tab>
+	 
+	        <p:tab id="confirm" title="ahm.. Vamos confirmar?">
+	            <p:panel header="Confirmation">
+	                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+	                    <h:panelGrid columns="2" columnClasses="label, value">
+	                    </h:panelGrid>
+	 
+	                    <h:panelGrid columns="2" columnClasses="label, value">
+	                    </h:panelGrid>
+	 
+	                    <h:panelGrid columns="2" columnClasses="label, value">
+	                    </h:panelGrid>
+	                </h:panelGrid>
+	 
+				  <p:commandButton value="#{msg['pages.cadastroCategoria.btnSalvar']}" 
+				                 action="#{categoriaMB.salvar}"/>
+	            </p:panel>
+	        </p:tab>
+	    </p:wizard>
+    
+	    <p:commandButton value="Cancel" oncomplete="PF('sidebar5').hide()"/>
+    
+	</p:sidebar>
+ 
 	  <p:overlayPanel id="juizPanel" for="juizBtn" hideEffect="fade" dynamic="true" style="width:600px">
 	        <p:fieldset id="availableJuizesField" legend="#{msg['pages.cadastroCampeonato.juizesDisponiveis']}">
 		        <p:dataTable id="availableJuizes" var="juiz" value="#{juizMB.juizes}">
@@ -128,7 +212,7 @@
 	                 update=":formCampeonato, :tabelaCampeonato"
 	                 />
        </h:form>
-	
+	<!--  por fim a tabela para dos campeonatos cadastrados -->
    <p:dataTable value="#{CampeonatoManagedBean.Campeonatos}"
                 var="aux"
                 id="tabelaCampeonato"
@@ -157,16 +241,7 @@
       <p:column headerText="#{msg['pages.cadastroCampeonato.dataFimCampeonato']}">
         <p:outputLabel value="#{aux.dataFimCampeonato}" />
       </p:column>
-      
-      
-      
    </p:dataTable>	
 	   
 	</ui:define>
 </ui:composition>
-
-
-
-
-
-

@@ -3,10 +3,13 @@ package enumeration;
  * Adicionar aqui todos os tipos de usuario
  * */
 public enum EnumUsuarioTipo {
+	ADM("Administrador"),
 	JUIZ("Juiz"), 
 	JOGADOR("Jogador"), 
-	VENDEDOR("Vendedor");
-	
+	TECNICO("Tecnico"), 
+	TORCEDOR("Torcedor"), 
+	ORGANIZADOR("Organizador");
+
 	private String label;
 	
 	EnumUsuarioTipo(String label){
