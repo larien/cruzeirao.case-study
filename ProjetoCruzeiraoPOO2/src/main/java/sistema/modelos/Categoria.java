@@ -4,7 +4,7 @@ package sistema.modelos;
  import java.util.Enumeration;
  import java.util.List;
  
- import enumeration.EnumSexoTipo;
+ import enumeration.EnumSexo;
  
  public class Categoria {
  	private String nome;
@@ -16,7 +16,7 @@ package sistema.modelos;
  	private int maxJogadores;
  	private int minTimes;
  	private int maxTimes;
- 	private Enumeration<EnumSexoTipo> sexo;
+ 	private Enumeration<EnumSexo> sexo;
  	private int attribute74;
  	
  	
@@ -81,10 +81,10 @@ package sistema.modelos;
  	public void setFases(List<Fase> fases) {
  		this.fases = fases;
  	}
- 	public Enumeration<EnumSexoTipo> getSexo() {
+ 	public Enumeration<EnumSexo> getSexo() {
  		return sexo;
  	}
- 	public void setSexo(Enumeration<EnumSexoTipo> sexo) {
+ 	public void setSexo(Enumeration<EnumSexo> sexo) {
  		this.sexo = sexo;
  	}
  	

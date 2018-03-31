@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+import enumeration.EnumUsuarioTipo;
 import sistema.modelos.Usuario;
 import sistema.service.UsuarioService;
 
@@ -34,5 +35,8 @@ public class UsuarioMB {
 	public List<Usuario> getUsuarios() {
 		return service.getUsuarios();
 	}
+	public EnumUsuarioTipo[] getTipoUsuario(){
+        return getTipoUsuario();
+    }
 }
 	

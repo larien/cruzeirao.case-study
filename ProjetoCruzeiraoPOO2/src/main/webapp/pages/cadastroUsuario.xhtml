@@ -24,7 +24,10 @@
 	  <p:outputLabel value="#{msg['pages.cadastroUsuario.nome']}" />
       <p:inputText value="#{cadastroMB.cadastro.nome}"/>
       <p:outputLabel for="country" value="#{msg['pages.cadastroUsuario.tipo']}" />
-      	<p:selectOneMenu id="country" value="#{cadastroMB.cadastro.tipo}"  style="width:167px">
+      <p:selectOneMenu id="country" value="#{cadastroMB.cadastro.tipo}"  style="width:167px">
+		  <f:selectItem itemLabel="Selecione" />
+		  <f:selectItems value="#{cadastroMB.tipoUsuario}"  var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.label}"/>
+	      <!-- 
         	<f:selectItem itemLabel="#{msg['pages.cadastroUsuario.internTipo']}" itemValue="#{msg['pages.cadastroUsuario.tipo6']}" noSelectionOption="true" />
         	<f:selectItem itemValue="#{msg['pages.cadastroUsuario.tipo1']}" itemLabel="#{msg['pages.cadastroUsuario.tipo1']}" />
             <f:selectItem itemValue="#{msg['pages.cadastroUsuario.tipo2']}" itemLabel="#{msg['pages.cadastroUsuario.tipo2']}" />
@@ -33,6 +36,7 @@
             <f:selectItem itemValue="#{msg['pages.cadastroUsuario.tipo5']}" itemLabel="#{msg['pages.cadastroUsuario.tipo5']}" />
             <f:selectItem itemValue="#{msg['pages.cadastroUsuario.tipo6']}" itemLabel="#{msg['pages.cadastroUsuario.tipo6']}" />
             <f:selectItem itemValue="#{msg['pages.cadastroUsuario.tipo7']}" itemLabel="#{msg['pages.cadastroUsuario.tipo7']}" />
+       	-->
       </p:selectOneMenu>
       <h:outputLabel for="pwd1" value="#{msg['pages.cadastroUsuario.senha']}" />
       	<p:password id="pwd1" value="#{cadastroMB.cadastro.senha}" match="pwd2" label="Password 1" required="true" />
@@ -41,7 +45,7 @@
 	  </p:panelGrid>
 	  <p:commandButton value="#{msg['pages.cadastroUsuario.btnSalvar']}" 
 	                 action="#{cadastroMB.salvar}"
-	                 update=":formUsuario"
+	                 update=":formUsuario :tabelaUsuario"
 	                 />
        </h:form>
 	

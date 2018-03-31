@@ -26,15 +26,6 @@
 	  <p:outputLabel value="#{msg['pages.cadastroCampeonato.nome']}" />
       <p:inputText value="#{campeonatoMB.campeonato.nome}"/>
       
-      <p:outputLabel value="#{msg['pages.cadastroCampeonato.local']}" />
-      <p:commandButton id="localBtn" value="#{msg['pages.cadastroCampeonato.local']}" type="button" />
-      
-      <p:outputLabel value="#{msg['pages.cadastroCampeonato.juiz']}" />
-      <p:commandButton id="juizBtn" value="#{msg['pages.cadastroCampeonato.juiz']}" type="button" />
-      
-      <p:outputLabel value="#{msg['pages.cadastroCampeonato.categoria']}" />
-      <p:commandButton id="categoriaBtn" value="#{msg['pages.cadastroCampeonato.categoria']}" type="button" />
-      
 	  <p:outputLabel value="#{msg['pages.cadastroCampeonato.dataInicioInscricao']}" />
 	  <p:calendar value="#{campeonatoMB.campeonato.dataInicioInscricao}"/>
 	  
@@ -46,38 +37,28 @@
 	  
 	  <p:outputLabel value="#{msg['pages.cadastroCampeonato.dataFimCampeonato']}" />
 	  <p:calendar value="#{campeonatoMB.campeonato.dataFimCampeonato}"  />
+      <p:outputLabel value="#{msg['pages.cadastroCampeonato.local']}" />
+      <p:commandButton id="localBtn" value="#{msg['pages.cadastroCampeonato.local']}" type="button" />
+      
+      <p:outputLabel value="#{msg['pages.cadastroCampeonato.juiz']}" />
+      <p:commandButton id="juizBtn" value="#{msg['pages.cadastroCampeonato.juiz']}" type="button" />
+      
+      <p:outputLabel value="#{msg['pages.cadastroCampeonato.categoria']}" />
+	  <p:growl id="growl" showDetail="true" />
+      <p:commandButton id="categoriaBtn" value="#{msg['pages.cadastroCampeonato.categoria']}" icon="ui-icon-extlink" actionListener="#{campeonatoMB.abrirOpcoesCampeonato}">
+        <p:ajax event="dialogReturn" listener="#{campeonatoMB.retornoOpcoesCampeonato}" update="growl"/>
+      </p:commandButton>
+      <!-- 
+      <p:commandButton id="categoriaBtn" value="#{msg['pages.cadastroCampeonato.categoria']}" type="button" />
+       -->
 	  </p:panelGrid>
-	  	  <p:overlayPanel id="categoriaPanel" for="categoriaBtn" hideEffect="fade" dynamic="true" style="width:600px">
-			<p:fieldset id="availableCategoriasField" legend="#{msg['pages.cadastroCampeonato.categoriaDisponivel']}">
-		        <p:dataTable id="availableCategorias" var="Categoria" value="#{CategoriaMB.Categorias}">
-		            <p:column style="width:20px">
-		                <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
-		                <p:draggable for="dragIcon" revert="true" helper="clone"/>
-		            </p:column>
-		 
-		            <p:column headerText="#{msg['pages.cadastroCampeonato.categoria']}">
-		                <h:outputText value="#{Categoria.endereco}" />
-		            </p:column>
-		 
-		        </p:dataTable>
-		    </p:fieldset>
+ 
+    
+    
+	  	  
 	 
-		    <p:fieldset id="selectedCategorias" legend="#{msg['pages.cadastroCampeonato.categoriaSelecionadas']}" style="margin-top:20px">
-		        <p:outputPanel id="dropCategoriaArea">
-		            <h:outputText value="#{msg['pages.cadastroCampeonato.dropAqui']}" rendered="#{empty campeonatoMB.campeonato.categorias}" style="font-size:24px;" />
-		            <p:dataTable id="selectedCategoriasTable" var="Categoria" value="#{campeonatoMB.campeonato.categorias}" rendered="#{not empty campeonatoMB.campeonato.categorias}">
-		                <p:column headerText="#{msg['pages.cadastroCampeonato.categoria']}">
-		                    <h:outputText value="#{Categoria.endereco}" />
-		                </p:column>
-		            </p:dataTable>
-		        </p:outputPanel>
-		    </p:fieldset>
-	 
-		    <p:droppable for="selectedCategorias" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableCategorias" onDrop="handleCategoriaDrop">
-		        <p:ajax listener="#{campeonatoMB.onCategoriaDrop}" update="dropCategoriaArea availableCategorias" />
-		    </p:droppable>
 
-	  </p:overlayPanel>
+	  
 	  <p:overlayPanel id="juizPanel" for="juizBtn" hideEffect="fade" dynamic="true" style="width:600px">
 	        <p:fieldset id="availableJuizesField" legend="#{msg['pages.cadastroCampeonato.juizesDisponiveis']}">
 		        <p:dataTable id="availableJuizes" var="juiz" value="#{juizMB.juizes}">
@@ -143,7 +124,7 @@
 	  </p:overlayPanel>
       
 	  <p:commandButton value="#{msg['pages.cadastroCampeonato.btnSalvar']}" 
-	                 action="#{campeonatoMB.salvar()}"
+	                 action="#{campeonatoMB.salvar}"
 	                 update=":formCampeonato, :tabelaCampeonato"
 	                 />
        </h:form>

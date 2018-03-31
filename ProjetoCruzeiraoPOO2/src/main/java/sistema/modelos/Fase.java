@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
+import enumeration.EnumFaseFormato;
+
 public class Fase {
 	private Date dataInicio;
 	private Date dataFim;
-	private Enumeration formato;
+	private Enumeration<EnumFaseFormato> formato;
 	private Categoria categoria;
 	private List<Grupo> grupos;
 	private int numero;
@@ -40,6 +42,12 @@ public class Fase {
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+	public Enumeration<EnumFaseFormato> getFormato() {
+		return formato;
+	}
+	public void setFormato(Enumeration<EnumFaseFormato> formato) {
+		this.formato = formato;
 	}
 	
 }

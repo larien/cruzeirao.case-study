@@ -1,7 +1,5 @@
 package sistema.modelos;
 
-import java.util.List;
-
 public class Cadastro {
 	private String email;
 	private String nome;

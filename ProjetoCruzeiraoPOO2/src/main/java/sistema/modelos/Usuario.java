@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
+import enumeration.EnumSexo;
+import enumeration.EnumUsuarioTipo;
+
 public class Usuario {
 	private String email;
 	private String nome;
@@ -11,14 +14,14 @@ public class Usuario {
 	private List<Equipe> equipes;
 	private List<Inscrito> inscricoes;
 	private List<Campeonato> campeonatos;
-	private Enumeration tipo;
+	private Enumeration<EnumUsuarioTipo> tipo;
 	private String telefoneFixo;
 	private String telefoneMovel;
 	private String endereco;
 	private String rg;
 	private String cpf;
 	private String cref;
-	private Enumeration sexo;
+	private Enumeration<EnumSexo> sexo;
 	private String foto;
 	public String getEmail() {
 		return email;
@@ -97,6 +100,18 @@ public class Usuario {
 	}
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	public Enumeration<EnumSexo> getSexo() {
+		return sexo;
+	}
+	public void setSexo(Enumeration<EnumSexo> sexo) {
+		this.sexo = sexo;
+	}
+	public Enumeration<EnumUsuarioTipo> getTipo() {
+		return tipo;
+	}
+	public void setTipo(Enumeration<EnumUsuarioTipo> tipo) {
+		this.tipo = tipo;
 	}
 	
 }

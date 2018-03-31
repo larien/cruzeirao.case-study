@@ -12,15 +12,15 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.event.SlideEndEvent;
 
-import enumeration.EnumSexoTipo;
+import enumeration.EnumSexo;
 import sistema.modelos.Categoria;
 import sistema.service.CategoriaService;
 
 @ManagedBean(eager=true)
 @ApplicationScoped
 public class CategoriaMB {
-	private static final Enumeration<EnumSexoTipo> Masculino = null;
-	private static final Enumeration<EnumSexoTipo> Feminino = null;
+	private static final Enumeration<EnumSexo> Masculino = null;
+	private static final Enumeration<EnumSexo> Feminino = null;
 	private CategoriaService service = new CategoriaService();
 	private Categoria categoria = new Categoria();
 
@@ -83,6 +83,12 @@ public class CategoriaMB {
     public void onSlideEnd(SlideEndEvent event) {
         FacesMessage message = new FacesMessage("Slide Ended", "Value: " + event.getValue());
         FacesContext.getCurrentInstance().addMessage(null, message);
-    } 
+    }
+	public static Enumeration<EnumSexo> getFeminino() {
+		return Feminino;
+	}
+	public static Enumeration<EnumSexo> getMasculino() {
+		return Masculino;
+	} 
 }
 	

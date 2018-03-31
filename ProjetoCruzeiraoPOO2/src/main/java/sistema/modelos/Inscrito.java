@@ -2,8 +2,10 @@ package sistema.modelos;
 
 import java.util.Enumeration;
 
+import enumeration.EnumInscritoTipo;
+
 public class Inscrito {
-	private Enumeration tipo;
+	private Enumeration<EnumInscritoTipo> tipo;
 	private Usuario usuario;
 	private Inscricao inscricao;
 	private boolean aceiteUsuario;
@@ -38,6 +40,12 @@ public class Inscrito {
 	}
 	public void setInscricaoValidada(boolean inscricaoValidada) {
 		this.inscricaoValidada = inscricaoValidada;
+	}
+	public Enumeration<EnumInscritoTipo> getTipo() {
+		return tipo;
+	}
+	public void setTipo(Enumeration<EnumInscritoTipo> tipo) {
+		this.tipo = tipo;
 	}
 	
 }

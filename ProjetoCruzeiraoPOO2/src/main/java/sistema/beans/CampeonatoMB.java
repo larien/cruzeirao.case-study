@@ -1,16 +1,19 @@
 package sistema.beans;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
-import java.util.ListIterator;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.DragDropEvent;
+import org.primefaces.event.SelectEvent;
 
 import sistema.modelos.Campeonato;
 import sistema.modelos.Juiz;
@@ -68,13 +71,14 @@ public class CampeonatoMB {
 				return;
 		this.campeonato.getLocais().add(local);
     }
-	public void onCategoriaDrop(DragDropEvent ddEvent) {
-		Categoria categoria = ((Categoria) ddEvent.getData());
-		if(this.campeonato.getCategorias()==null)
-			this.campeonato.setCategorias(new ArrayList<Categoria>());
-		for (Categoria c : campeonato.getCategorias())
-			if(categoria == c)
-				return;
-		this.campeonato.getCategorias().add(categoria);
+	public void abrirOpcoesCampeonato() {
+	
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("modal", true);
+        //System.out.println("chegou aqui");
+        PrimeFaces.current().dialog().openDynamic("cadastroCategoria", options, null);
+    }
+	public void retornoOpcoesCampeonato(SelectEvent event) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Returned", event.getObject().toString()));
     }
 }
