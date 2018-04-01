@@ -7,7 +7,7 @@ public class Campeonato {
 	private String nome;
 	private List<Local> locais;
 	private List<Juiz> juizes;
-	private List<Categoria> categorias;
+	private Categoria categoria;
 	private Date dataInicioInscricao;
 	private Date dataFimInscricao;
 	private Date dataInicioCampeonato;
@@ -31,11 +31,11 @@ public class Campeonato {
 	public void setJuizes(List<Juiz> juizes) {
 		this.juizes = juizes;
 	}
-	public List<Categoria> getCategorias() {
-		return categorias;
+	public List<Categoria> getCategoria() {
+		return categoria;
 	}
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	public Date getDataInicioInscricao() {
 		return dataInicioInscricao;
