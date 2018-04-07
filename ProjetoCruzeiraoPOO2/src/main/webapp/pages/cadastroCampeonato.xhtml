@@ -51,70 +51,6 @@
 				update=":formCampeonato :tabelaCampeonato" />
 		</h:form>
 
-		<p:commandButton id="juizBtn"
-			value="#{msg['pages.cadastroCampeonato.juiz']}" type="button" />
-		<p:sidebar widgetVar="sidebar5" fullScreen="true" baseZIndex="10000">
-
-			<h1>
-				<p:outputLabel value="#{msg['pages.cadastroCategoria.menu']}" />
-			</h1>
-
-			<h1 style="font-weight: normal">Ohhh aqui vai um texto!!!</h1>
-			<h2 style="font-weight: normal">Seria bom listar os campeonatos
-				cadastrados?</h2>
-			<p:dataTable id="campeonatosCadastrados" var="categoria"
-				value="#{campeonatoMB.campeonato.categorias}">
-				<p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
-					<h:outputText value="#{categoria.nome}" />
-				</p:column>
-			</p:dataTable>
-
-			<p:commandButton value="Cancel" oncomplete="PF('sidebar5').hide()" />
-
-		</p:sidebar>
-
-		<p:overlayPanel id="juizPanel" for="juizBtn" hideEffect="fade"
-			dynamic="true" style="width:600px">
-			<p:fieldset id="availableJuizesField"
-				legend="#{msg['pages.cadastroCampeonato.juizesDisponiveis']}">
-				<p:dataTable id="availableJuizes" var="juiz"
-					value="#{juizMB.juizes}">
-					<p:column style="width:20px">
-						<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
-						<p:draggable for="dragIcon" revert="true" helper="clone" />
-					</p:column>
-
-					<p:column headerText="#{msg['pages.cadastroCampeonato.usuario']}">
-						<h:outputText value="#{juiz.usuario}" />
-					</p:column>
-
-				</p:dataTable>
-			</p:fieldset>
-
-			<p:fieldset id="selectedJuizes"
-				legend="#{msg['pages.cadastroCampeonato.juizesSelecionados']}"
-				style="margin-top:20px">
-				<p:outputPanel id="dropJuizArea">
-					<h:outputText value="#{msg['pages.cadastroCampeonato.dropAqui']}"
-						rendered="#{empty campeonatoMB.campeonato.juizes}"
-						style="font-size:24px;" />
-					<p:dataTable id="selectedJuizesTable" var="juiz"
-						value="#{campeonatoMB.campeonato.juizes}"
-						rendered="#{not empty campeonatoMB.campeonato.juizes}">
-						<p:column headerText="#{msg['pages.cadastroCampeonato.usuario']}">
-							<h:outputText value="#{juiz.usuario}" />
-						</p:column>
-					</p:dataTable>
-				</p:outputPanel>
-			</p:fieldset>
-
-			<p:droppable for="selectedJuizes" tolerance="touch"
-				activeStyleClass="ui-state-highlight" datasource="availableJuizes"
-				onDrop="handleDropJuiz">
-				<p:ajax listener="#{campeonatoMB.onJuizDrop}"
-					update="dropJuizArea availableJuizes" />
-			</p:droppable>
-		</p:overlayPanel>
 
 
 
@@ -122,10 +58,10 @@
 		<!--  por fim a tabela para dos campeonatos cadastrados -->
 		<p:dataTable value="#{campeonatoMB.campeonatos}" var="aux"
 			id="tabelaCampeonato">
-			
-			
-			
-			
+
+
+
+
 			<p:column headerText="#{msg['pages.cadastroCampeonato.nome']}">
 				<p:outputLabel value="#{aux.nome}" />
 			</p:column>
@@ -165,12 +101,10 @@
 						style="margin-top:20px">
 						<p:outputPanel id="dropLocalArea">
 							<h:outputText value="#{msg['pages.cadastroCampeonato.dropAqui']}"
-								rendered="#{empty aux.locais}"
-								style="font-size:24px;" />
-								
+								rendered="#{empty aux.locais}" style="font-size:24px;" />
+
 							<p:dataTable id="selectedLocaisTable" var="local"
-								value="#{aux.locais}"
-								rendered="#{not empty aux.locais}">
+								value="#{aux.locais}" rendered="#{not empty aux.locais}">
 								<p:column
 									headerText="#{msg['pages.cadastroCampeonato.endereco']}">
 									<h:outputText value="#{local.endereco}" />
@@ -195,17 +129,66 @@
 
 
 			<p:column headerText="#{msg['pages.cadastroCampeonato.juiz']}">
-				<p:outputLabel value="#{aux.juizes}" />
+				<p:commandButton id="juizBtn"
+					value="#{msg['pages.cadastroCampeonato.juiz']}" type="button" />
+				<p:overlayPanel id="juizPanel" for="juizBtn" hideEffect="fade"
+					dynamic="true" style="width:600px">
+					<p:fieldset id="availableJuizesField"
+						legend="#{msg['pages.cadastroCampeonato.juizesDisponiveis']}">
+						<p:dataTable id="availableJuizes" var="juiz"
+							value="#{juizMB.juizes}">
+							<p:column style="width:20px">
+								<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+								<p:draggable for="dragIcon" revert="true" helper="clone" />
+							</p:column>
+
+							<p:column headerText="#{msg['pages.cadastroCampeonato.usuario']}">
+								<h:outputText value="#{juiz.usuario}" />
+							</p:column>
+
+						</p:dataTable>
+					</p:fieldset>
+
+					<p:fieldset id="selectedJuizes"
+						legend="#{msg['pages.cadastroCampeonato.juizesSelecionados']}"
+						style="margin-top:20px">
+						<p:outputPanel id="dropJuizArea">
+							<h:outputText value="#{msg['pages.cadastroCampeonato.dropAqui']}"
+								rendered="#{empty campeonatoMB.campeonato.juizes}"
+								style="font-size:24px;" />
+							<p:dataTable id="selectedJuizesTable" var="juiz"
+								value="#{campeonatoMB.campeonato.juizes}"
+								rendered="#{not empty campeonatoMB.campeonato.juizes}">
+								<p:column
+									headerText="#{msg['pages.cadastroCampeonato.usuario']}">
+									<h:outputText value="#{juiz.usuario}" />
+								</p:column>
+							</p:dataTable>
+						</p:outputPanel>
+					</p:fieldset>
+
+					<p:droppable for="selectedJuizes" tolerance="touch"
+						activeStyleClass="ui-state-highlight" datasource="availableJuizes"
+						onDrop="handleDropJuiz">
+						<p:ajax listener="#{campeonatoMB.onJuizDrop}"
+							update="dropJuizArea availableJuizes" />
+					</p:droppable>
+				</p:overlayPanel>
+
 			</p:column>
 
 
 
-
+			<!-- Parte deixada para cadastro do campeonato -->
 			<p:column headerText="#{msg['pages.cadastroCampeonato.categoria']}">
-					<p:commandButton value="#{msg['pages.cadastroCampeonato.categoria']}" action="cadastroCategoria.xhtml" actionListener="#{categoriaMB.editarCategoria}">
-					    <f:attribute name="categorias" value="#{aux.categorias}" />
-					    <f:attribute name="campeonato" value="#{aux}" />
-					</p:commandButton>
+				<p:commandButton
+					value="#{msg['pages.cadastroCampeonato.categoria']}"
+					action="cadastroCategoria.xhtml"
+					actionListener="#{categoriaMB.editarCategoria}">
+					<!-- Parametros para passar nos metodos -->
+					<f:attribute name="categorias" value="#{aux.categorias}" />
+					<f:attribute name="campeonato" value="#{aux}" />
+				</p:commandButton>
 			</p:column>
 
 
@@ -223,8 +206,8 @@
 				headerText="#{msg['pages.cadastroCampeonato.dataFimInscricao']}">
 				<p:outputLabel value="#{aux.dataFimInscricao}" />
 			</p:column>
-			
-			
+
+
 
 
 			<p:column
