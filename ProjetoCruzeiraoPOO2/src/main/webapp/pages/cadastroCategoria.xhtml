@@ -5,8 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui2="http://java.sun.com/jsf/facelets"
->
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
 	
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.cadastroCategoria.title']}" />
@@ -14,63 +13,69 @@
 
 	<ui:define name="principal">
 
-	  <h1><p:outputLabel value="#{msg['pages.cadastroCategoria.menu']}"/></h1>
-	  
-	  <h:form id="formCategoria">	
-	  <p:panelGrid columns="2">
-	  
-	  <p:outputLabel value="#{msg['pages.cadastroCategoria.nome']}" />
-      <p:inputText value="#{categoriaMB.categoria.nome}"/>
-      
-      <p:outputLabel value="#{msg['pages.cadastroCategoria.nascidosApartirDe']}" />
-	  <p:calendar value="#{categoriaMB.categoria.nascidosApartirDe}"/>
-      
-       <p:outputLabel value="#{msg['pages.cadastroCategoria.sexo']}" />
-       <p:selectOneRadio id="sexoRadio" value="{categoriaMB.setSexo}">
-            <f:selectItem itemLabel="Masculino" itemValue="Masc" />
-            <f:selectItem itemLabel="Feminino" itemValue="Fem" />
-        </p:selectOneRadio>
-            
-        <p:outputLabel value="#{msg['pages.cadastroCategoria.maxJogadores']}" />
-        <p:inputText id="slider1" value="#{categoriaMB.categoria.maxJogadores}" style=" margin-top: 10px">
-        			<p:slider for="slider1" style=" margin-top: 10px"/>
-        </p:inputText>
-        
-        <p:outputLabel value="#{msg['pages.cadastroCategoria.maxTimes']}" />
-        <p:inputText id="slider2" value="#{categoriaMB.categoria.maxTimes}" style=" margin-top: 10px">
-        		<p:slider for="slider2" style=" margin-top: 10px"/>
-        </p:inputText>
-            
-	  </p:panelGrid>
-      
-	  <p:commandButton value="#{msg['pages.cadastroCategoria.btnSalvar']}" 
-	                 action="#{categoriaMB.salvar}"
-	                 update=":formCategoria, :tabelaCategoria"/>
-       </h:form>
-	
-   <p:dataTable value="#{categoriaMB.categorias}"
-                var="aux"
-                id="tabelaCategoria">
-                
-                
-      <p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
-        <p:outputLabel value="#{aux.nome}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroCategoria.nascidosApartirDe']}">
-        <p:outputLabel value="#{aux.nascidosApartirDe}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroCategoria.sexo']}">
-        <p:outputLabel value="#{aux.sexo}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroCategoria.maxJogadores']}">
-        <p:outputLabel value="#{aux.maxJogadores}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroCategoria.maxTimes']}">
-        <p:outputLabel value="#{aux.maxTimes}" />
-      </p:column>
-       
-   </p:dataTable>	
-	   
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroCategoria.menu']}" />
+		</h1>
+
+		<h:form id="formCategoria">
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="#{msg['pages.cadastroCategoria.nome']}" />
+				<p:inputText value="#{categoriaMB.categoria.nome}" />
+
+				<p:outputLabel
+					value="#{msg['pages.cadastroCategoria.nascidosApartirDe']}" />
+				<p:calendar value="#{categoriaMB.categoria.nascidosApartirDe}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroCategoria.sexo']}" />
+				<p:selectOneRadio id="sexoRadio" value="{categoriaMB.setSexo}">
+					<f:selectItem itemLabel="Masculino" itemValue="Masc" />
+					<f:selectItem itemLabel="Feminino" itemValue="Fem" />
+				</p:selectOneRadio>
+
+				<p:outputLabel
+					value="#{msg['pages.cadastroCategoria.maxJogadores']}" />
+				<p:inputText id="slider1"
+					value="#{categoriaMB.categoria.maxJogadores}"
+					style=" margin-top: 10px">
+					<p:slider for="slider1" style=" margin-top: 10px" />
+				</p:inputText>
+
+				<p:outputLabel value="#{msg['pages.cadastroCategoria.maxTimes']}" />
+				<p:inputText id="slider2" value="#{categoriaMB.categoria.maxTimes}"
+					style=" margin-top: 10px">
+					<p:slider for="slider2" style=" margin-top: 10px" />
+				</p:inputText>
+
+			</p:panelGrid>
+
+			<p:commandButton value="#{msg['pages.cadastroCategoria.btnSalvar']}"
+				action="#{categoriaMB.salvar}"
+				update=":formCategoria, :tabelaCategoria" />
+		</h:form>
+
+		<p:dataTable value="#{categoriaMB.categorias}" var="aux"
+			id="tabelaCategoria">
+
+			<p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
+				<p:outputLabel value="#{aux.nome}" />
+			</p:column>
+			<p:column
+				headerText="#{msg['pages.cadastroCategoria.nascidosApartirDe']}">
+				<p:outputLabel value="#{aux.nascidosApartirDe}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCategoria.sexo']}">
+				<p:outputLabel value="#{aux.sexo}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCategoria.maxJogadores']}">
+				<p:outputLabel value="#{aux.maxJogadores}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCategoria.maxTimes']}">
+				<p:outputLabel value="#{aux.maxTimes}" />
+			</p:column>
+
+		</p:dataTable>
+		<p:commandButton action="cadastroCampeonato.xhtml" value="#{msg['pages.cadastroCategoria.voltar]}" />
 	</ui:define>
 </ui:composition>
 

@@ -46,18 +46,10 @@
 
 			</p:panelGrid>
 
-
-
-
 			<p:commandButton value="#{msg['pages.cadastroCampeonato.btnSalvar']}"
 				action="#{campeonatoMB.salvar}"
 				update=":formCampeonato :tabelaCampeonato" />
 		</h:form>
-
-
-
-		<p:commandButton oncomplete="PF('sidebar5').show()"
-			value="#{msg['pages.cadastroCampeonato.categoria']}" />
 
 		<p:commandButton id="juizBtn"
 			value="#{msg['pages.cadastroCampeonato.juiz']}" type="button" />
@@ -130,18 +122,26 @@
 		<!--  por fim a tabela para dos campeonatos cadastrados -->
 		<p:dataTable value="#{campeonatoMB.campeonatos}" var="aux"
 			id="tabelaCampeonato">
+			
+			
+			
+			
 			<p:column headerText="#{msg['pages.cadastroCampeonato.nome']}">
 				<p:outputLabel value="#{aux.nome}" />
 			</p:column>
 
+
+
+
+			<!--  Pega local utilizando parametros -->
 			<p:column headerText="#{msg['pages.cadastroCampeonato.local']}">
 				<p:commandButton id="localBtn"
 					value="#{msg['pages.cadastroCampeonato.local']}" type="button" />
 
-		<!--  paiinel para o cadastro de locais -->
+				<!--  painel para o cadastro de locais -->
 				<p:overlayPanel id="localPanel" for="localBtn" hideEffect="fade"
 					dynamic="true" style="width:600px">
-		<!--  lista todos os locais cadastrados -->
+					<!--  lista todos os locais cadastrados -->
 					<p:fieldset id="availableLocaisField"
 						legend="#{msg['pages.cadastroCampeonato.locaisDisponiveis']}">
 						<p:dataTable id="availableLocais" var="local"
@@ -159,7 +159,7 @@
 						</p:dataTable>
 					</p:fieldset>
 
-		<!--  lista todos cadastros salvos na lista do campeonato -->
+					<!--  lista todos cadastros salvos na lista do campeonato -->
 					<p:fieldset id="selectedLocais"
 						legend="#{msg['pages.cadastroCampeonato.locaisSelecionados']}"
 						style="margin-top:20px">
@@ -191,28 +191,49 @@
 
 			</p:column>
 
+
+
+
 			<p:column headerText="#{msg['pages.cadastroCampeonato.juiz']}">
 				<p:outputLabel value="#{aux.juizes}" />
 			</p:column>
 
+
+
+
 			<p:column headerText="#{msg['pages.cadastroCampeonato.categoria']}">
-				<p:outputLabel value="#{aux.categorias}" />
+					<p:commandButton value="#{msg['pages.cadastroCampeonato.categoria']}" action="cadastroCategoria.xhtml" actionListener="#{categoriaMB.editarCategoria}">
+					    <f:attribute name="categorias" value="#{aux.categorias}" />
+					    <f:attribute name="campeonato" value="#{aux}" />
+					</p:commandButton>
 			</p:column>
+
+
+
 
 			<p:column
 				headerText="#{msg['pages.cadastroCampeonato.dataInicioInscricao']}">
 				<p:outputLabel value="#{aux.dataInicioInscricao}" />
 			</p:column>
 
+
+
+
 			<p:column
 				headerText="#{msg['pages.cadastroCampeonato.dataFimInscricao']}">
 				<p:outputLabel value="#{aux.dataFimInscricao}" />
 			</p:column>
+			
+			
+
 
 			<p:column
 				headerText="#{msg['pages.cadastroCampeonato.dataInicioCampeonato']}">
 				<p:outputLabel value="#{aux.dataInicioCampeonato}" />
 			</p:column>
+
+
+
 
 			<p:column
 				headerText="#{msg['pages.cadastroCampeonato.dataFimCampeonato']}">

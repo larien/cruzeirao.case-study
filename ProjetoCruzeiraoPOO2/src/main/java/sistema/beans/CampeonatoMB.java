@@ -17,6 +17,7 @@ import org.primefaces.event.DragDropEvent;
 import org.primefaces.event.FlowEvent;
 
 import sistema.modelos.Campeonato;
+import sistema.modelos.Categoria;
 import sistema.modelos.Juiz;
 import sistema.modelos.Local;
 import sistema.service.CampeonatoService;
