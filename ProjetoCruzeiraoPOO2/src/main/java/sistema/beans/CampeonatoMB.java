@@ -35,6 +35,7 @@ public class CampeonatoMB {
 	
 	public void salvar()
 	{
+		//System.out.println(campeonato);
 		service.salvar(campeonato);
 		campeonato = new Campeonato();
 	}
@@ -63,43 +64,14 @@ public class CampeonatoMB {
         this.campeonato.getJuizes().add(juiz);
     }
 	public void onLocalDrop(DragDropEvent ddEvent) {
+		Campeonato teste= (Campeonato) ddEvent.getComponent().getAttributes().get("campeonato");
 		Local local = ((Local) ddEvent.getData());
-		if(this.campeonato.getLocais()==null)
-			this.campeonato.setLocais(new ArrayList<Local>());
-		for (Local l : campeonato.getLocais())
+		
+		if(teste.getLocais()==null)
+			teste.setLocais(new ArrayList<Local>());
+		for (Local l : teste.getLocais())
 			if(local == l)
 				return;
-		this.campeonato.getLocais().add(local);
-    }
-	/*
-	public void abrirOpcoesCampeonato() {
-	
-        Map<String,Object> options = new HashMap<String, Object>();
-        options.put("modal", true);
-        //System.out.println("chegou aqui");
-        PrimeFaces.current().dialog().openDynamic("cadastroCategoria", options, null);
-    }
-	public void retornoOpcoesCampeonato(SelectEvent event) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Returned", event.getObject().toString()));
-    }
-	 */
-    private boolean skip;
-
-    
-    public boolean isSkip() {
-        return skip;
-    }
- 
-    public void setSkip(boolean skip) {
-        this.skip = skip;
-    }
-	public String onFlowProcess(FlowEvent event) {
-        if(skip) {
-            skip = false;   //reset in case user goes back
-            return "confirm";
-        }
-        else {
-            return event.getNewStep();
-        }
+		teste.getLocais().add(local);
     }
 }
