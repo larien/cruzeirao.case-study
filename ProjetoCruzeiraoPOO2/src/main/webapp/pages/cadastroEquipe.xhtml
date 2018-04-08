@@ -5,92 +5,100 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui2="http://java.sun.com/jsf/facelets"
->
-	
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
+
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.cadastroEquipe.title']}" />
 	</ui:define>
 
 	<ui:define name="principal">
-	<script type="text/javascript">
-    	function handleDiretorDrop(event, ui) {
-	        var droppedDiretor = ui.draggable;
-        	droppedDiretor.fadeOut('fast');
-    	}
-	</script>
-	  <h1><p:outputLabel value="#{msg['pages.cadastroEquipe.menu']}"/></h1>
-	  
-	  <h:form id="formEquipe">	
-	  <p:panelGrid columns="2">
-	  <p:outputLabel value="#{msg['pages.cadastroEquipe.nome']}" />
-      <p:inputText value="#{EquipeMB.Equipe.nome}"/>
-      
-      <p:outputLabel value="#{msg['pages.cadastroEquipe.dataFundacao']}" />
-      <p:calendar value="#{EquipeMB.Equipe.dataFundacao}"/>
-      
-      <p:outputLabel value="#{msg['pages.cadastroEquipe.cidade']}" />
-      <p:inputText value="#{EquipeMB.Equipe.cidade}"/>
-      	 
-      <p:outputLabel value="#{msg['pages.cadastroEquipe.diretores']}" />
-      <p:commandButton id="diretorBtn" value="#{msg['pages.cadastroEquipe.diretores']}" type="button" />
-      
-	  </p:panelGrid>
-	  <p:overlayPanel id="DiretorPanel" for="diretorBtn" hideEffect="fade" dynamic="true" style="width:600px">
-			<p:fieldset id="availableDiretoresField" legend="#{msg['pages.cadastroEquipe.diretores']}">
-		        <p:dataTable id="availableDiretores" var="diretor" value="#{usuarioMB.usuarios}">
-		            <p:column style="width:20px">
-		                <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
-		                <p:draggable for="dragIcon" revert="true" helper="clone"/>
-		            </p:column>
-		 
-		            <p:column headerText="#{msg['pages.cadastroEquipe.diretorNome']}">
-		                <h:outputText value="#{diretor.nome}" />
-		            </p:column>
-		 
-		        </p:dataTable>
-		    </p:fieldset>
-	 
-		    <p:fieldset id="selectedDiretores" legend="Selected Diretores" style="margin-top:20px">
-		        <p:outputPanel id="dropDiretoresArea">
-		            <h:outputText value="#{msg['pages.cadastroEquipe.dropAqui']}" rendered="#{empty equipeMB.equipe.diretores}" style="font-size:24px;" />
-		            <p:dataTable id="selectedDiretoresTable" var="Diretor" value="#{equipeMB.equipe.diretores}" rendered="#{not empty equipeMB.equipe.diretores}">
-		                <p:column headerText="{msg['pages.cadastroEquipe.diretorNome']}">
-		                    <h:outputText value="#{Diretor.nome}" />
-		                </p:column>
-		            </p:dataTable>
-		        </p:outputPanel>
-		    </p:fieldset>
-	 
-		    <p:droppable for="selectedDiretores" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableDiretores" onDrop="handleDiretoresDrop">
-		        <p:ajax listener="#{EquipeMB.onDiretorDrop}" update="dropDiretoresArea availableDiretores" />
-		    </p:droppable>
+		<script type="text/javascript">
+			function handleDiretorDrop(event, ui) {
+				var droppedDiretor = ui.draggable;
+				droppedDiretor.fadeOut('fast');
+			}
+		</script>
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroEquipe.menu']}" />
+		</h1>
 
-	  </p:overlayPanel>
-	  <p:commandButton value="#{msg['pages.cadastroEquipe.btnSalvar']}" 
-	                 action="#{EquipeMB.salvar}"
-	                 update=":formEquipe, :tabelaEquipe"
-	                 />
-       </h:form>
-	
-   <p:dataTable value="#{EquipeManagedBean.Equipes}"
-                var="aux"
-                id="tabelaEquipe"
-   >
-      <p:column headerText="#{msg['pages.cadastroEquipe.nome']}">
-        <p:outputLabel value="#{aux.nome}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroEquipe.dataFundacao']}">
-        <p:outputLabel value="#{aux.dataFundacao}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroEquipe.cidade']}">
-        <p:outputLabel value="#{aux.cidade}" />
-      </p:column>
-      
-      <p:column headerText="#{msg['pages.cadastroEquipe.diretores']}">
-        <p:outputLabel value="#{aux.diretores}" />
-      </p:column>
-   </p:dataTable>	
-	   
+		<h:form id="formEquipe">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.nome']}" />
+				<p:inputText value="#{EquipeMB.Equipe.nome}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.dataFundacao']}" />
+				<p:calendar value="#{EquipeMB.Equipe.dataFundacao}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.cidade']}" />
+				<p:inputText value="#{EquipeMB.Equipe.cidade}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.diretores']}" />
+				<p:commandButton id="diretorBtn"
+					value="#{msg['pages.cadastroEquipe.diretores']}" type="button" />
+
+			</p:panelGrid>
+			<p:overlayPanel id="DiretorPanel" for="diretorBtn" hideEffect="fade"
+				dynamic="true" style="width:600px">
+				<p:fieldset id="availableDiretoresField"
+					legend="#{msg['pages.cadastroEquipe.diretores']}">
+					<p:dataTable id="availableDiretores" var="diretor"
+						value="#{usuarioMB.usuarios}">
+						<p:column style="width:20px">
+							<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+							<p:draggable for="dragIcon" revert="true" helper="clone" />
+						</p:column>
+
+						<p:column headerText="#{msg['pages.cadastroEquipe.diretorNome']}">
+							<h:outputText value="#{diretor.nome}" />
+						</p:column>
+
+					</p:dataTable>
+				</p:fieldset>
+
+				<p:fieldset id="selectedDiretores" legend="Selected Diretores"
+					style="margin-top:20px">
+					<p:outputPanel id="dropDiretoresArea">
+						<h:outputText value="#{msg['pages.cadastroEquipe.dropAqui']}"
+							rendered="#{empty equipeMB.equipe.diretores}"
+							style="font-size:24px;" />
+						<p:dataTable id="selectedDiretoresTable" var="Diretor"
+							value="#{equipeMB.equipe.diretores}"
+							rendered="#{not empty equipeMB.equipe.diretores}">
+							<p:column headerText="{msg['pages.cadastroEquipe.diretorNome']}">
+								<h:outputText value="#{Diretor.nome}" />
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</p:fieldset>
+
+				<p:droppable for="selectedDiretores" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="availableDiretores" onDrop="handleDiretoresDrop">
+					<p:ajax listener="#{EquipeMB.onDiretorDrop}"
+						update="dropDiretoresArea availableDiretores" />
+				</p:droppable>
+
+			</p:overlayPanel>
+			<p:commandButton value="#{msg['pages.cadastroEquipe.btnSalvar']}"
+				action="#{EquipeMB.salvar}" update=":formEquipe, :tabelaEquipe" />
+		</h:form>
+
+		<p:dataTable value="#{EquipeManagedBean.Equipes}" var="aux"
+			id="tabelaEquipe">
+			<p:column headerText="#{msg['pages.cadastroEquipe.nome']}">
+				<p:outputLabel value="#{aux.nome}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroEquipe.dataFundacao']}">
+				<p:outputLabel value="#{aux.dataFundacao}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroEquipe.cidade']}">
+				<p:outputLabel value="#{aux.cidade}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroEquipe.diretores']}">
+				<p:outputLabel value="#{aux.diretores}" />
+			</p:column>
+		</p:dataTable>
+
 	</ui:define>
 </ui:composition>

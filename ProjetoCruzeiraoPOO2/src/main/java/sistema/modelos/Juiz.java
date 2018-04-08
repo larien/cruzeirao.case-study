@@ -1,11 +1,8 @@
 package sistema.modelos;
 
-import java.util.Enumeration;
-
-import enumeration.EnumJuizTipo;
 
 public class Juiz {
-	private Enumeration<EnumJuizTipo> tipo;
+	private String tipo;
 	private Usuario usuario;
 
 	public Usuario getUsuario() {
@@ -16,11 +13,14 @@ public class Juiz {
 		this.usuario = usuario;
 	}
 
-	public Enumeration<EnumJuizTipo> getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Enumeration<EnumJuizTipo> tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+
+		
 }

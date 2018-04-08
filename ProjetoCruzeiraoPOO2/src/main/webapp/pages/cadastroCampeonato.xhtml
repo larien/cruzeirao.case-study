@@ -129,52 +129,15 @@
 
 
 			<p:column headerText="#{msg['pages.cadastroCampeonato.juiz']}">
-				<p:commandButton id="juizBtn"
-					value="#{msg['pages.cadastroCampeonato.juiz']}" type="button" />
-				<p:overlayPanel id="juizPanel" for="juizBtn" hideEffect="fade"
-					dynamic="true" style="width:600px">
-					<p:fieldset id="availableJuizesField"
-						legend="#{msg['pages.cadastroCampeonato.juizesDisponiveis']}">
-						<p:dataTable id="availableJuizes" var="juiz"
-							value="#{juizMB.juizes}">
-							<p:column style="width:20px">
-								<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
-								<p:draggable for="dragIcon" revert="true" helper="clone" />
-							</p:column>
-
-							<p:column headerText="#{msg['pages.cadastroCampeonato.usuario']}">
-								<h:outputText value="#{juiz.usuario}" />
-							</p:column>
-
-						</p:dataTable>
-					</p:fieldset>
-
-					<p:fieldset id="selectedJuizes"
-						legend="#{msg['pages.cadastroCampeonato.juizesSelecionados']}"
-						style="margin-top:20px">
-						<p:outputPanel id="dropJuizArea">
-							<h:outputText value="#{msg['pages.cadastroCampeonato.dropAqui']}"
-								rendered="#{empty campeonatoMB.campeonato.juizes}"
-								style="font-size:24px;" />
-							<p:dataTable id="selectedJuizesTable" var="juiz"
-								value="#{campeonatoMB.campeonato.juizes}"
-								rendered="#{not empty campeonatoMB.campeonato.juizes}">
-								<p:column
-									headerText="#{msg['pages.cadastroCampeonato.usuario']}">
-									<h:outputText value="#{juiz.usuario}" />
-								</p:column>
-							</p:dataTable>
-						</p:outputPanel>
-					</p:fieldset>
-
-					<p:droppable for="selectedJuizes" tolerance="touch"
-						activeStyleClass="ui-state-highlight" datasource="availableJuizes"
-						onDrop="handleDropJuiz">
-						<p:ajax listener="#{campeonatoMB.onJuizDrop}"
-							update="dropJuizArea availableJuizes" />
-					</p:droppable>
-				</p:overlayPanel>
-
+			<p:commandButton
+					value="#{msg['pages.cadastroCampeonato.juiz']}"
+					action="cadastroJuiz.xhtml"
+					actionListener="#{juizMB.editarJuiz}">
+					<!-- Parametros para passar nos metodos -->
+					<f:attribute name="juizes" value="#{aux.juizes}" />
+					<f:attribute name="campeonato" value="#{aux}" />
+				</p:commandButton>
+			
 			</p:column>
 
 

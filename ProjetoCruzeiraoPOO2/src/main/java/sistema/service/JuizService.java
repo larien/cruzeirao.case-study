@@ -7,7 +7,7 @@ import sistema.modelos.Juiz;
 
 public class JuizService {
 
-	private ArrayList <Juiz> juizes = new ArrayList<Juiz>();
+	private List <Juiz> juizes = new ArrayList<Juiz>();
 	
 	public JuizService()
 	{
@@ -27,6 +27,11 @@ public class JuizService {
 	public List <Juiz> getJuizes()
 	{
 		return juizes;
+	}
+
+	public void setJuizes(List<Juiz> juizes) {
+		this.juizes = juizes;
+		
 	}
 	
 }

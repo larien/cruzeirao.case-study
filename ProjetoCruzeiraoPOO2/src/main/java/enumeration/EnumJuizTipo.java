@@ -1,10 +1,12 @@
 package enumeration;
-
+/*
+ * Adicionar aqui todos os tipos de usuario
+ * */
 public enum EnumJuizTipo {
 
-	JUIZ("Juiz"), 
-	JUIZ2("Jogador"), 
-	JUIZ3("Vendedor");
+	AbritroPrincipal("Arbitro principal"), 
+	ArbitroLateral("Arbitro lateral"), 
+	Gandula("Gandula");
 	
 	private String label;
 	

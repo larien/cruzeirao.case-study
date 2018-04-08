@@ -7,36 +7,36 @@ import javax.faces.bean.ManagedBean;
 
 import enumeration.EnumUsuarioTipo;
 import sistema.modelos.Usuario;
-import sistema.service.UsuarioService;
+import sistema.service.CadastroService;
 
 @ManagedBean(eager=true)
 @ApplicationScoped
 public class UsuarioMB {
-	private UsuarioService service = new UsuarioService();
-	private Usuario Usuario = new Usuario();
+	private CadastroService service = new CadastroService();
+	private Usuario Cadastro = new Usuario();
 
 	public void salvar()
 	{
-		service.salvar(Usuario);
-		Usuario = new Usuario();
+		service.salvar(Cadastro);
+		Cadastro = new Usuario();
 	}
 	
-	public Usuario getUsuario() {
-		return Usuario;
+	public Usuario getCadastro() {
+		return Cadastro;
 	}
-	public void setUsuario(Usuario Usuario) {
-		this.Usuario = Usuario;
+	public void setCadastro(Usuario Cadastro) {
+		this.Cadastro = Cadastro;
 	}
-	public void remover (Usuario Usuario)
+	public void remover (Usuario Cadastro)
 	{
-		service.remove(Usuario);
+		service.remove(Cadastro);
 	}
 
-	public List<Usuario> getUsuarios() {
-		return service.getUsuarios();
+	public List<Usuario> getCadastros() {
+		return service.getCadastros();
 	}
 	public EnumUsuarioTipo[] getTipoUsuario(){
-        return getTipoUsuario();
+        return EnumUsuarioTipo.values();
     }
 }
 	
