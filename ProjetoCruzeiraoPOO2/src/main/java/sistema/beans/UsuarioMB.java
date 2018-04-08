@@ -7,12 +7,12 @@ import javax.faces.bean.ManagedBean;
 
 import enumeration.EnumUsuarioTipo;
 import sistema.modelos.Usuario;
-import sistema.service.CadastroService;
+import sistema.service.UsuarioService;
 
 @ManagedBean(eager=true)
 @ApplicationScoped
 public class UsuarioMB {
-	private CadastroService service = new CadastroService();
+	private UsuarioService service = new UsuarioService();
 	private Usuario Cadastro = new Usuario();
 
 	public void salvar()
@@ -33,7 +33,7 @@ public class UsuarioMB {
 	}
 
 	public List<Usuario> getCadastros() {
-		return service.getCadastros();
+		return service.getUsuarios();
 	}
 	public EnumUsuarioTipo[] getTipoUsuario(){
         return EnumUsuarioTipo.values();

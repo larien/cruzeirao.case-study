@@ -48,146 +48,187 @@
 
 			<p:commandButton value="#{msg['pages.cadastroCampeonato.btnSalvar']}"
 				action="#{campeonatoMB.salvar}"
-				update=":formCampeonato :tabelaCampeonato" />
+				update=":formCampeonato :formTabelaCampeonato" />
 		</h:form>
 
 
 
 
-
-		<!--  por fim a tabela para dos campeonatos cadastrados -->
-		<p:dataTable value="#{campeonatoMB.campeonatos}" var="aux"
-			id="tabelaCampeonato">
-
-
-
-
-			<p:column headerText="#{msg['pages.cadastroCampeonato.nome']}">
-				<p:outputLabel value="#{aux.nome}" />
-			</p:column>
+		<h:form method="post" id="formTabelaCampeonato">
+			<!--  por fim a tabela para dos campeonatos cadastrados -->
+			<p:dataTable value="#{campeonatoMB.campeonatos}" var="aux"
+				id="tabelaCampeonato" editable="true" editMode="cell">
 
 
 
 
-			<!--  Pega local utilizando parametros -->
-			<p:column headerText="#{msg['pages.cadastroCampeonato.local']}">
-				<p:commandButton id="localBtn"
-					value="#{msg['pages.cadastroCampeonato.local']}" type="button" />
+				<p:column headerText="#{msg['pages.cadastroCampeonato.nome']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.nome}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-				<!--  painel para o cadastro de locais -->
-				<p:overlayPanel id="localPanel" for="localBtn" hideEffect="fade"
-					dynamic="true" style="width:600px">
-					<!--  lista todos os locais cadastrados -->
-					<p:fieldset id="availableLocaisField"
-						legend="#{msg['pages.cadastroCampeonato.locaisDisponiveis']}">
-						<p:dataTable id="availableLocais" var="local"
-							value="#{localMB.locais}">
-							<p:column style="width:20px">
-								<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
-								<p:draggable for="dragIcon" revert="true" helper="clone" />
-							</p:column>
 
-							<p:column
-								headerText="#{msg['pages.cadastroCampeonato.endereco']}">
-								<h:outputText value="#{local.endereco}" />
-							</p:column>
 
-						</p:dataTable>
-					</p:fieldset>
 
-					<!--  lista todos cadastros salvos na lista do campeonato -->
-					<p:fieldset id="selectedLocais"
-						legend="#{msg['pages.cadastroCampeonato.locaisSelecionados']}"
-						style="margin-top:20px">
-						<p:outputPanel id="dropLocalArea">
-							<h:outputText value="#{msg['pages.cadastroCampeonato.dropAqui']}"
-								rendered="#{empty aux.locais}" style="font-size:24px;" />
+				<!--  Pega local utilizando parametros -->
+				<p:column headerText="#{msg['pages.cadastroCampeonato.local']}">
+					<p:commandButton id="localBtn"
+						value="#{msg['pages.cadastroCampeonato.local']}" type="button" />
 
-							<p:dataTable id="selectedLocaisTable" var="local"
-								value="#{aux.locais}" rendered="#{not empty aux.locais}">
+					<!--  painel para o cadastro de locais -->
+					<p:overlayPanel id="localPanel" for="localBtn" hideEffect="fade"
+						dynamic="true" style="width:600px">
+						<!--  lista todos os locais cadastrados -->
+						<p:fieldset id="availableLocaisField"
+							legend="#{msg['pages.cadastroCampeonato.locaisDisponiveis']}">
+							<p:dataTable id="availableLocais" var="local"
+								value="#{localMB.locais}">
+								<p:column style="width:20px">
+									<h:outputText id="dragIcon"
+										styleClass="ui-icon ui-icon-arrow-4" />
+									<p:draggable for="dragIcon" revert="true" helper="clone" />
+								</p:column>
+
 								<p:column
 									headerText="#{msg['pages.cadastroCampeonato.endereco']}">
 									<h:outputText value="#{local.endereco}" />
 								</p:column>
+
 							</p:dataTable>
-						</p:outputPanel>
-					</p:fieldset>
+						</p:fieldset>
 
-					<p:droppable for="selectedLocais" tolerance="touch"
-						activeStyleClass="ui-state-highlight" datasource="availableLocais"
-						onDrop="handleLocalDrop">
+						<!--  lista todos cadastros salvos na lista do campeonato -->
+						<p:fieldset id="selectedLocais"
+							legend="#{msg['pages.cadastroCampeonato.locaisSelecionados']}"
+							style="margin-top:20px">
+							<p:outputPanel id="dropLocalArea">
+								<h:outputText
+									value="#{msg['pages.cadastroCampeonato.dropAqui']}"
+									rendered="#{empty aux.locais}" style="font-size:24px;" />
+
+								<p:dataTable id="selectedLocaisTable" var="local"
+									value="#{aux.locais}" rendered="#{not empty aux.locais}">
+									<p:column
+										headerText="#{msg['pages.cadastroCampeonato.endereco']}">
+										<h:outputText value="#{local.endereco}" />
+									</p:column>
+								</p:dataTable>
+							</p:outputPanel>
+						</p:fieldset>
+
+						<p:droppable for="selectedLocais" tolerance="touch"
+							activeStyleClass="ui-state-highlight"
+							datasource="availableLocais" onDrop="handleLocalDrop">
+							<f:attribute name="campeonato" value="#{aux}" />
+							<p:ajax listener="#{campeonatoMB.onLocalDrop}"
+								update="dropLocalArea availableLocais" />
+						</p:droppable>
+
+					</p:overlayPanel>
+
+				</p:column>
+
+
+
+
+				<p:column headerText="#{msg['pages.cadastroCampeonato.juiz']}">
+					<p:commandButton value="#{msg['pages.cadastroCampeonato.juiz']}"
+						action="cadastroJuiz.xhtml" actionListener="#{juizMB.editarJuiz}">
+						<!-- Parametros para passar nos metodos -->
+						<f:attribute name="juizes" value="#{aux.juizes}" />
 						<f:attribute name="campeonato" value="#{aux}" />
-						<p:ajax listener="#{campeonatoMB.onLocalDrop}"
-							update="dropLocalArea availableLocais" />
-					</p:droppable>
+					</p:commandButton>
 
-				</p:overlayPanel>
-
-			</p:column>
+				</p:column>
 
 
 
-
-			<p:column headerText="#{msg['pages.cadastroCampeonato.juiz']}">
-			<p:commandButton
-					value="#{msg['pages.cadastroCampeonato.juiz']}"
-					action="cadastroJuiz.xhtml"
-					actionListener="#{juizMB.editarJuiz}">
-					<!-- Parametros para passar nos metodos -->
-					<f:attribute name="juizes" value="#{aux.juizes}" />
-					<f:attribute name="campeonato" value="#{aux}" />
-				</p:commandButton>
-			
-			</p:column>
-
-
-
-			<!-- Parte deixada para cadastro do campeonato -->
-			<p:column headerText="#{msg['pages.cadastroCampeonato.categoria']}">
-				<p:commandButton
-					value="#{msg['pages.cadastroCampeonato.categoria']}"
-					action="cadastroCategoria.xhtml"
-					actionListener="#{categoriaMB.editarCategoria}">
-					<!-- Parametros para passar nos metodos -->
-					<f:attribute name="categorias" value="#{aux.categorias}" />
-					<f:attribute name="campeonato" value="#{aux}" />
-				</p:commandButton>
-			</p:column>
+				<!-- Parte deixada para cadastro do campeonato -->
+				<p:column headerText="#{msg['pages.cadastroCampeonato.categoria']}">
+					<p:commandButton
+						value="#{msg['pages.cadastroCampeonato.categoria']}"
+						action="cadastroCategoria.xhtml"
+						actionListener="#{categoriaMB.editarCategoria}">
+						<!-- Parametros para passar nos metodos -->
+						<f:attribute name="categorias" value="#{aux.categorias}" />
+						<f:attribute name="campeonato" value="#{aux}" />
+					</p:commandButton>
+				</p:column>
 
 
 
 
-			<p:column
-				headerText="#{msg['pages.cadastroCampeonato.dataInicioInscricao']}">
-				<p:outputLabel value="#{aux.dataInicioInscricao}" />
-			</p:column>
+				<p:column
+					headerText="#{msg['pages.cadastroCampeonato.dataInicioInscricao']}">
+
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.dataInicioInscricao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.dataInicioInscricao}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
 
 
 
-			<p:column
-				headerText="#{msg['pages.cadastroCampeonato.dataFimInscricao']}">
-				<p:outputLabel value="#{aux.dataFimInscricao}" />
-			</p:column>
+				<p:column
+					headerText="#{msg['pages.cadastroCampeonato.dataFimInscricao']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.dataFimInscricao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.dataFimInscricao}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
 
 
 
-			<p:column
-				headerText="#{msg['pages.cadastroCampeonato.dataInicioCampeonato']}">
-				<p:outputLabel value="#{aux.dataInicioCampeonato}" />
-			</p:column>
+				<p:column
+					headerText="#{msg['pages.cadastroCampeonato.dataInicioCampeonato']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.dataInicioCampeonato}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.dataInicioCampeonato}"
+								style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
 
 
 
-			<p:column
-				headerText="#{msg['pages.cadastroCampeonato.dataFimCampeonato']}">
-				<p:outputLabel value="#{aux.dataFimCampeonato}" />
-			</p:column>
+				<p:column
+					headerText="#{msg['pages.cadastroCampeonato.dataFimCampeonato']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.dataFimCampeonato}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.dataFimCampeonato}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroCampeonato.excluir']}"
+						action="#{campeonatoMB.remover(aux)}"
+						update="formTabelaCampeonato"></p:commandLink>
+				</p:column>
 
-
-		</p:dataTable>
-
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

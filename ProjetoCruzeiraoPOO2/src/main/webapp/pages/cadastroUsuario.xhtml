@@ -5,56 +5,81 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui2="http://java.sun.com/jsf/facelets"
->
-	
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
+
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.cadastroUsuario.title']}" />
 	</ui:define>
-	
+
 
 	<ui:define name="principal">
-	  
-	  <h1><p:outputLabel value="#{msg['pages.cadastroUsuario.menu']}"/></h1>
-	  
-	  <h:form id="formUsuario">	
-	  <p:panelGrid columns="2">
-      <p:outputLabel value="#{msg['pages.cadastroUsuario.email']}" />
-      <p:inputText value="#{usuarioMB.cadastro.email}"/>
-	  <p:outputLabel value="#{msg['pages.cadastroUsuario.nome']}" />
-      <p:inputText value="#{usuarioMB.cadastro.nome}"/>
-      <p:outputLabel for="country" value="#{msg['pages.cadastroUsuario.tipo']}" />
-      <p:selectOneMenu id="country" value="#{usuarioMB.cadastro.tipo}"  style="width:167px">
-		  	<f:selectItem itemLabel="Selecione" />
-		  	<f:selectItems value="#{usuarioMB.tipoUsuario}"  var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.label}"/>
 
-      </p:selectOneMenu>
-      <h:outputLabel for="pwd1" value="#{msg['pages.cadastroUsuario.senha']}" />
-      	<p:password id="pwd1" value="#{usuarioMB.cadastro.senha}" match="pwd2" label="Password 1" required="true" />
-      <h:outputLabel for="pwd2" value="#{msg['pages.cadastroUsuario.senhaconfirma']}" />
-        <p:password id="pwd2" value="#{usuarioMB.cadastro.senha}" label="Password 2" required="true" />
-	  </p:panelGrid>
-	  <p:commandButton value="#{msg['pages.cadastroUsuario.btnSalvar']}" 
-	                 action="#{usuarioMB.salvar}"
-	                 update=":formUsuario :tabelaUsuario"
-	                 />
-       </h:form>
-	
-   <p:dataTable value="#{usuarioMB.cadastros}"
-                var="aux"
-                id="tabelaUsuario"
-   >
-      <p:column headerText="#{msg['pages.cadastroUsuario.email']}">
-        <p:outputLabel value="#{aux.email}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroUsuario.nome']}">
-        <p:outputLabel value="#{aux.nome}" />
-      </p:column>
-      <p:column headerText="#{msg['pages.cadastroUsuario.tipo']}">
-        <p:outputLabel value="#{aux.tipo}" />
-      </p:column>
-      
-   </p:dataTable>	
-	   
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroUsuario.menu']}" />
+		</h1>
+
+		<h:form id="formUsuario">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.email']}" />
+				<p:inputText value="#{usuarioMB.cadastro.email}" />
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.nome']}" />
+				<p:inputText value="#{usuarioMB.cadastro.nome}" />
+				<p:outputLabel for="country"
+					value="#{msg['pages.cadastroUsuario.tipo']}" />
+				<p:selectOneMenu id="country" value="#{usuarioMB.cadastro.tipo}"
+					style="width:167px">
+					<f:selectItem itemLabel="Selecione" />
+					<f:selectItems value="#{usuarioMB.tipoUsuario}" var="tipo"
+						itemValue="#{tipo}" itemLabel="#{tipo.label}" />
+
+				</p:selectOneMenu>
+				<h:outputLabel for="pwd1"
+					value="#{msg['pages.cadastroUsuario.senha']}" />
+				<p:password id="pwd1" value="#{usuarioMB.cadastro.senha}"
+					match="pwd2" label="Password 1" required="true" />
+				<h:outputLabel for="pwd2"
+					value="#{msg['pages.cadastroUsuario.senhaconfirma']}" />
+				<p:password id="pwd2" value="#{usuarioMB.cadastro.senha}"
+					label="Password 2" required="true" />
+			</p:panelGrid>
+			<p:commandButton value="#{msg['pages.cadastroUsuario.btnSalvar']}"
+				action="#{usuarioMB.salvar}"
+				update=":formUsuario :formTabelaUsuario" />
+		</h:form>
+
+		<h:form method="post" id="formTabelaUsuario">
+			<p:dataTable value="#{usuarioMB.cadastros}" var="aux"
+				id="tabelaUsuario" editable="true" editMode="cell">
+				<p:column headerText="#{msg['pages.cadastroUsuario.email']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.email}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.email}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroUsuario.nome']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.nome}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroUsuario.tipo']}">
+					<p:outputLabel value="#{aux.tipo}" />
+				</p:column>
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroUsuario.excluir']}"
+						action="#{usuarioMB.remover(aux)}" update="formTabelaUsuario"></p:commandLink>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
 	</ui:define>
 </ui:composition>

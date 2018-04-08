@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui2="http://java.sun.com/jsf/facelets">
-	
+
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.cadastroCategoria.title']}" />
 	</ui:define>
@@ -16,6 +16,10 @@
 		<h1>
 			<p:outputLabel value="#{msg['pages.cadastroCategoria.menu']}" />
 		</h1>
+		<h2>
+			<p:outputLabel value="#{msg['pages.cadastroCampeonato.nome']} : " />
+			<p:outputLabel value="#{categoriaMB.categoria.campeonato.nome}" />
+		</h2>
 
 		<h:form id="formCategoria">
 			<p:panelGrid columns="2">
@@ -51,30 +55,66 @@
 
 			<p:commandButton value="#{msg['pages.cadastroCategoria.btnSalvar']}"
 				action="#{categoriaMB.salvar}"
-				update=":formCategoria, :tabelaCategoria" />
+				update=":formCategoria, :formTabelaCategoria" />
 		</h:form>
 
-		<p:dataTable value="#{categoriaMB.categorias}" var="aux"
-			id="tabelaCategoria">
+		<h:form method="post" id="formTabelaCategoria">
+			<p:dataTable value="#{categoriaMB.categorias}" var="aux"
+				id="tabelaCategoria" editable="true" editMode="cell">
+				<p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.nome}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column
+					headerText="#{msg['pages.cadastroCategoria.nascidosApartirDe']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.nascidosApartirDe}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.nascidosApartirDe}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCategoria.sexo']}">
+					<p:outputLabel value="#{aux.sexo}" />
+				</p:column>
+				<p:column
+					headerText="#{msg['pages.cadastroCategoria.maxJogadores']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.maxJogadores}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputNumber value="#{aux.maxJogadores}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCategoria.maxTimes']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.maxTimes}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputNumber value="#{aux.maxTimes}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroCategoria.excluir']}"
+						action="#{categoriaMB.remover(aux)}"
+						update="formTabelaCategoria"></p:commandLink>
+				</p:column>
 
-			<p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
-				<p:outputLabel value="#{aux.nome}" />
-			</p:column>
-			<p:column
-				headerText="#{msg['pages.cadastroCategoria.nascidosApartirDe']}">
-				<p:outputLabel value="#{aux.nascidosApartirDe}" />
-			</p:column>
-			<p:column headerText="#{msg['pages.cadastroCategoria.sexo']}">
-				<p:outputLabel value="#{aux.sexo}" />
-			</p:column>
-			<p:column headerText="#{msg['pages.cadastroCategoria.maxJogadores']}">
-				<p:outputLabel value="#{aux.maxJogadores}" />
-			</p:column>
-			<p:column headerText="#{msg['pages.cadastroCategoria.maxTimes']}">
-				<p:outputLabel value="#{aux.maxTimes}" />
-			</p:column>
-
-		</p:dataTable>
-		<p:commandButton action="cadastroCampeonato.xhtml" value="#{msg['pages.cadastroCategoria.voltar']}" />
+			</p:dataTable>
+		</h:form>
+		<p:commandButton action="cadastroCampeonato.xhtml"
+			value="#{msg['pages.cadastroCategoria.voltar']}" />
 	</ui:define>
 </ui:composition>

@@ -19,18 +19,17 @@
 
 		<h:form id="formJuiz">
 			<p:panelGrid columns="2">
-
-		  	
-				<p:outputLabel for ="country" value="#{msg['pages.cadastroJuiz.tipo']}" />
+				<p:outputLabel for="country"
+					value="#{msg['pages.cadastroJuiz.tipo']}" />
 				<p:selectOneMenu id="country" value="#{juizMB.juiz.tipo}"
 					style="width:167px">
 					<f:selectItem itemLabel="Selecione" />
 					<f:selectItems value="#{juizMB.tipoJuiz}" var="tipo"
 						itemValue="#{tipo}" itemLabel="#{tipo.label}" />
 				</p:selectOneMenu>
-				
-				
-				
+
+
+
 				<p:outputLabel value="#{msg['pages.cadastroJuiz.usuario']}" />
 				<p:selectOneListbox id="advanced" value="#{juizMB.juiz.usuario}"
 					converter="juizConverter" var="t" filter="true"
@@ -45,19 +44,24 @@
 			</p:panelGrid>
 
 			<p:commandButton value="#{msg['pages.cadastroJuiz.btnSalvar']}"
-				action="#{juizMB.salvar}" update=":formJuiz, :tabelaJuiz" />
+				action="#{juizMB.salvar}" update=":formJuiz, :formTabelaJuiz" />
 		</h:form>
 
-		<p:dataTable value="#{juizMB.juizes}" var="aux" id="tabelaJuiz">
+		<h:form id="formTabelaJuiz">
+			<p:dataTable value="#{juizMB.juizes}" var="aux">
 
-			<p:column headerText="#{msg['pages.cadastroJuiz.tipo']}">
-				<p:outputLabel value="#{aux.tipo}" />
-			</p:column>
-			<p:column headerText="#{msg['pages.cadastroJuiz.usuario']}">
-				<p:outputLabel value="#{aux.usuario}" />
-			</p:column>
-
-		</p:dataTable>
+				<p:column headerText="#{msg['pages.cadastroJuiz.tipo']}">
+					<p:outputLabel value="#{aux.tipo}" />
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroJuiz.usuario']}">
+					<p:outputLabel value="#{aux.usuario.nome}" />
+				</p:column>
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroJuiz.excluir']}"
+						action="#{juizMB.remover(aux)}" update="formTabelaJuiz"></p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
 
 		<p:commandButton action="cadastroCampeonato.xhtml"
 			value="#{msg['pages.cadastroJuiz.voltar']}" />

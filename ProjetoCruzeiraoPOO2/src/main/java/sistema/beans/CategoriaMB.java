@@ -55,6 +55,7 @@ public class CategoriaMB {
 		
 		else
 			setCategorias(new ArrayList<Categoria>());
+		categoria.setCampeonato(camp);
 	}
 	
 	
@@ -112,7 +113,13 @@ public class CategoriaMB {
 	}
 	public static Enumeration<EnumSexo> getMasculino() {
 		return Masculino;
-	} 
+	}
+	public static Campeonato getCamp() {
+		return camp;
+	}
+	public static void setCamp(Campeonato camp) {
+		CategoriaMB.camp = camp;
+	}
 	
 }
 	

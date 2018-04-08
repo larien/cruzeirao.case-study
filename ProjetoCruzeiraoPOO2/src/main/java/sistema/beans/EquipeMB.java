@@ -2,6 +2,7 @@ package sistema.beans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
@@ -14,6 +15,11 @@ public class EquipeMB {
 	private EquipeService service = new EquipeService();
 	private Equipe Equipe = new Equipe();
 
+	@PostConstruct
+    public void init() {
+		service = new EquipeService();
+		Equipe = new Equipe();
+    }
 	public void salvar()
 	{
 		service.salvar(Equipe);
