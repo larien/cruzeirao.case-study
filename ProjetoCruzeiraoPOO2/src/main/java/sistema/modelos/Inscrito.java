@@ -5,7 +5,7 @@ import java.util.Enumeration;
 import enumeration.EnumInscritoTipo;
 
 public class Inscrito {
-	private Enumeration<EnumInscritoTipo> tipo;
+	private String tipo;
 	private Usuario usuario;
 	private Inscricao inscricao;
 	private boolean aceiteUsuario;
@@ -41,11 +41,12 @@ public class Inscrito {
 	public void setInscricaoValidada(boolean inscricaoValidada) {
 		this.inscricaoValidada = inscricaoValidada;
 	}
-	public Enumeration<EnumInscritoTipo> getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(Enumeration<EnumInscritoTipo> tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
 	
 }

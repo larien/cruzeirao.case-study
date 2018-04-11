@@ -23,9 +23,6 @@
 
 		<h:form id="formInscricao">
 			<p:panelGrid columns="2">
-
-				<p:outputLabel value="#{msg['pages.cadastroInscricao.equipe']}" />
-				<p:inputText value="#{inscricaoMB.inscricao.equipe}" />
 				
 				<p:outputLabel value="#{msg['pages.cadastroInscricao.numero']}" />
 				<p:inputText value="#{inscricaoMB.inscricao.numero}" />
@@ -49,15 +46,14 @@
 		<h:form method="post" id="formTabelaInscricao">
 			<p:dataTable value="#{inscricaoMB.inscricoes}" var="aux"
 				id="tabelaInscricao" editable="true" editMode="cell">
+				
 				<p:column headerText="#{msg['pages.cadastroInscricao.equipe']}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{aux.equipe}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{aux.equipe}" style="width:96%" />
-						</f:facet>
-					</p:cellEditor>
+				
+					<p:commandButton value="#{msg['pages.cadastroInscricao.equipe']}"
+						action="cadastroEquipe.xhtml" actionListener="#{equipeMB.editarEquipe}">
+						<!-- Parametros para passar nos metodos -->
+						<f:attribute name="inscricao" value="#{aux}" />
+					</p:commandButton>
 				</p:column>
 				
 				<p:column headerText="#{msg['pages.cadastroInscricao.numero']}">

@@ -28,5 +28,9 @@ public class EquipeService {
 	{
 		return equipes;
 	}
+
+	public void setEquipes(ArrayList<Equipe> equipes) {
+		this.equipes = equipes;
+	}
 	
 }
