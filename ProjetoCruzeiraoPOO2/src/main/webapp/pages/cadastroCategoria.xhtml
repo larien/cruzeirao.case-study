@@ -71,6 +71,8 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
+				
+				
 				<p:column
 					headerText="#{msg['pages.cadastroCategoria.nascidosApartirDe']}">
 					<p:cellEditor>
@@ -105,6 +107,14 @@
 							<p:inputNumber value="#{aux.maxTimes}" style="width:96%" />
 						</f:facet>
 					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCategoriaEquipe.cadastrar']}">
+					<p:commandButton value="#{msg['pages.cadastroCategoriaEquipe.cadastrar']}"
+						action="cadastroInscricao.xhtml" actionListener="#{inscricaoMB.editarInscricao}">
+						<!-- Parametros para passar nos metodos -->
+						<f:attribute name="inscricoes" value="#{aux.inscricoes}" />
+						<f:attribute name="categoria" value="#{aux}" />
+					</p:commandButton>
 				</p:column>
 				<p:column value="remover">
 					<p:commandLink value="#{msg['pages.cadastroCategoria.excluir']}"

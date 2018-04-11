@@ -28,5 +28,9 @@ public class PartidaFutebolService {
 	{
 		return partidasFutebol;
 	}
+
+	public void setPartidasFutebol(ArrayList<PartidaFutebol> partidasFutebol) {
+		this.partidasFutebol = partidasFutebol;
+	}
 	
 }

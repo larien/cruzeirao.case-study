@@ -1,0 +1,121 @@
+
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroinscrito.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroinscrito.menu']}" />
+		</h1>
+		<h2>
+			<p:outputLabel value="#{msg['pages.cadastroInscricao.equipe']} : " />
+			<p:outputLabel value="#{inscritoMB.inscrito.inscricao}" />
+		</h2>
+
+		<h:form id="forminscrito">
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="#{msg['pages.cadastroinscrito.usuario']}" />
+				<p:inputText value="#{inscritoMB.inscrito.usuario}" />
+				
+				<p:outputLabel value="#{msg['pages.cadastroinscrito.aceiteUsuario']}" />
+				<p:inputText value="#{inscritoMB.inscrito.aceiteUsuario}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroinscrito.inscricaoValidada']}" />
+				<p:inputText value="#{inscritoMB.inscrito.inscricaoValidada}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroinscrito.tipo']}" />
+				<p:inputText value="#{inscritoMB.inscrito.tipo}" />
+				
+				<p:outputLabel value="#{msg['pages.cadastroinscrito.suspensoJogos']}" />
+				<p:inputText value="#{inscritoMB.inscrito.suspensoJogos}" />
+				
+				
+
+			</p:panelGrid>
+
+			<p:commandButton value="#{msg['pages.cadastroinscrito.btnSalvar']}"
+				action="#{inscritoMB.salvar}"
+				update=":forminscrito, :formTabelainscrito" />
+		</h:form>
+
+		<h:form method="post" id="formTabelainscrito">
+			<p:dataTable value="#{inscritoMB.inscritos}" var="aux"
+				id="tabelainscrito" editable="true" editMode="cell">
+				<p:column headerText="#{msg['pages.cadastroinscrito.usuario']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.usuario}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.usuario}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroinscrito.aceiteUsuario']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.aceiteUsuario}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.aceiteUsuario}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="#{msg['pages.cadastroinscrito.inscricaoValidada']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.inscricaoValidada}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.inscricaoValidada}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroinscrito.tipo']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.tipo}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.tipo}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				
+				<p:column headerText="#{msg['pages.cadastroinscrito.suspensoJogos']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.suspensoJogos}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.suspensoJogos}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroinscrito.excluir']}"
+						action="#{inscritoMB.remover(aux)}"
+						update="formTabelainscrito"></p:commandLink>
+				</p:column>
+			
+			</p:dataTable>
+		</h:form>
+		<p:commandButton action="cadastroInscricao.xhtml"
+			value="#{msg['pages.cadastroinscrito.voltar']}" />
+	</ui:define>
+</ui:composition>

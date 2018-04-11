@@ -28,5 +28,9 @@ public class CartaoService {
 	{
 		return cartoes;
 	}
+
+	public void setCartoes(ArrayList<Cartao> cartoes) {
+		this.cartoes = cartoes;
+	}
 	
 }

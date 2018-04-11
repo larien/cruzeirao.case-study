@@ -28,5 +28,9 @@ public class RodadaService {
 	{
 		return rodadas;
 	}
+
+	public void setRodadas(ArrayList<Rodada> rodadas) {
+		this.rodadas = rodadas;
+	}
 	
 }

@@ -28,5 +28,9 @@ public class PartidaService {
 	{
 		return partidas;
 	}
+
+	public void setPartidas(ArrayList<Partida> partidas) {
+		this.partidas = partidas;
+	}
 	
 }

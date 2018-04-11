@@ -28,5 +28,9 @@ public class UsuarioService {
 	{
 		return Usuarios;
 	}
+
+	public void setUsuarios(ArrayList<Usuario> usuarios) {
+		Usuarios = usuarios;
+	}
 	
 }
