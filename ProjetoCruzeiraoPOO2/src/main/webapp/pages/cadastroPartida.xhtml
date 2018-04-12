@@ -1,0 +1,168 @@
+
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroPartida.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroPartida.menu']}" />
+		</h1>
+
+		<h:form method="post" id="formPartida">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg['pages.cadastroPartida.data']}" />
+				<p:inputText value="#{partidaMB.partida.data}" />
+				
+				<p:outputLabel value="#{msg['pages.cadastroPartida.equipeMandante']}" />
+				<p:inputText value="#{partidaMB.partida.equipeMandante}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroPartida.equipeVisitante']}" />
+				<p:inputText value="#{partidaMB.partida.equipeVisitante}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroPartida.grupo']}" />
+				<p:inputText value="#{partidaMB.partida.grupo}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroPartida.juizes']}" />
+				<p:inputText value="#{partidaMB.partida.juizes}" />
+				
+				<p:outputLabel value="#{msg['pages.cadastroPartida.local']}" />
+				<p:inputText value="#{partidaMB.partida.local}" />
+				
+				<p:outputLabel value="#{msg['pages.cadastroPartida.numero']}" />
+				<p:inputText value="#{partidaMB.partida.numero}" />
+				
+				<p:outputLabel value="#{msg['pages.cadastroPartida.proxPartida']}" />
+				<p:inputText value="#{partidaMB.partida.proxPartida}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroPartida.relatoJuiz']}" />
+				<p:inputText value="#{partidaMB.partida.relatoJuiz}" />
+				
+			</p:panelGrid>
+			
+			<p:commandButton value="#{msg['pages.cadastroPartida.btnSalvar']}"
+				action="#{partidaMB.salvar}" update=":formPartida, :formTabelaPartida" />
+		</h:form>
+		
+		<h:form method="post" id="formTabelaPartida">
+			<p:dataTable value="#{partidaMB.partidas}" var="aux"
+				editable="true" editMode="cell">
+				<p:column headerText="#{msg['pages.cadastroPartida.data']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.data}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.data}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroPartida.equipeMandante']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.equipeMandante}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.equipeMandante}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroPartida.equipeVisitante']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.equipeVisitante}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.equipeVisitante}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroPartida.grupo']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.grupo}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.grupo}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroPartida.juizes']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.juizes}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.juizes}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroPartida.local']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.local}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.local}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroPartida.numero']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.numero}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.numero}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroPartida.proxPartida']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.proxPartida}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.proxPartida}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroPartida.relatoJuiz']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.relatoJuiz}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.relatoJuiz}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroPartida.excluir']}"
+						action="#{partidaMB.remover(aux)}" update="formTabelaPartida"></p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+
+
