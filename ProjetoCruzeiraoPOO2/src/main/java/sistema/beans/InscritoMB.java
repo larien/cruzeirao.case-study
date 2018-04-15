@@ -21,7 +21,7 @@ import sistema.service.InscritoService;
 public class InscritoMB {
 	private InscritoService service;
 	private Inscrito Inscrito;
-	private static Inscricao inscricao;
+	private static Inscricao insc;
 	
 	@PostConstruct
     public void init() {
@@ -38,12 +38,13 @@ public class InscritoMB {
 	@SuppressWarnings("unchecked")
 	public void editarInscrito(ActionEvent event)
 	{
-		inscricao = (Inscricao)event.getComponent().getAttributes().get("inscricao");
-		if(inscricao.getInscritos()==null)
-			inscricao.setInscritos(new ArrayList<Inscrito>());	
-		service.setInscritos(inscricao.getInscritos());
-		Inscrito.setInscricao(inscricao);
+		insc = (Inscricao)event.getComponent().getAttributes().get("inscricao");
+		if(insc.getInscritos()==null)
+			insc.setInscritos(new ArrayList<Inscrito>());	
+		service.setInscritos(insc.getInscritos());
+		Inscrito.setInscricao(insc);
 	}
+	
 	
 	public Inscrito getInscrito() {
 		return Inscrito;

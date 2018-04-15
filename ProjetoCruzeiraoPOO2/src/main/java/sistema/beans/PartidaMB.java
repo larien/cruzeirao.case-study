@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
 import sistema.modelos.Grupo;
+import sistema.modelos.Inscricao;
 import sistema.modelos.Partida;
 import sistema.modelos.Rodada;
 import sistema.service.PartidaService;
@@ -44,10 +45,11 @@ public class PartidaMB {
 	public void editarPartida(ActionEvent event)
 	{
 		rodada = (Rodada)event.getComponent().getAttributes().get("rodada");
-
+		
 		if (rodada.getPartidas()==null)
 			rodada.setPartidas(new ArrayList<Partida>());
 		service.setPartidas(rodada.getPartidas());
+		Partida.setRodada(rodada);
 	}
 }
 	

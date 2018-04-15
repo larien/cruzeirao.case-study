@@ -13,6 +13,7 @@ public class Partida {
 	private List<Juiz> juizes;
 	private Grupo grupo;
 	private String relatoJuiz;
+	private Rodada rodada;
 	public int getNumero() {
 		return numero;
 	}
@@ -66,6 +67,12 @@ public class Partida {
 	}
 	public void setRelatoJuiz(String relatoJuiz) {
 		this.relatoJuiz = relatoJuiz;
+	}
+	public Rodada getRodada() {
+		return rodada;
+	}
+	public void setRodada(Rodada rodada) {
+		this.rodada = rodada;
 	}
 	
 }

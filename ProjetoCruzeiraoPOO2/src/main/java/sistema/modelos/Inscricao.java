@@ -56,6 +56,6 @@ public class Inscricao {
 	@Override
 	public String toString()
 	{
-		return numero + categoria.getNome();
+		return numero+"";
 	}
 }
