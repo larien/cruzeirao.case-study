@@ -1,25 +1,11 @@
 package sistema.modelos;
 
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.List;
-
 public class Usuario {
 	private String email;
 	private String nome;
-	private Date dataNascimento;
-	private List<Equipe> equipes;
-	private List<Inscrito> inscricoes;
-	private List<Campeonato> campeonatos;
-	private Enumeration tipo;
-	private String telefoneFixo;
-	private String telefoneMovel;
-	private String endereco;
-	private String rg;
-	private String cpf;
-	private String cref;
-	private Enumeration sexo;
-	private String foto;
+	private String senha;
+	private String tipo;
+
 	public String getEmail() {
 		return email;
 	}
@@ -32,71 +18,16 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getDataNascimento() {
-		return dataNascimento;
+	public String getSenha() {
+		return senha;
 	}
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	public List<Equipe> getEquipes() {
-		return equipes;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setEquipes(List<Equipe> equipes) {
-		this.equipes = equipes;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
-	public List<Inscrito> getInscricoes() {
-		return inscricoes;
-	}
-	public void setInscricoes(List<Inscrito> inscricoes) {
-		this.inscricoes = inscricoes;
-	}
-	public List<Campeonato> getCampeonatos() {
-		return campeonatos;
-	}
-	public void setCampeonatos(List<Campeonato> campeonatos) {
-		this.campeonatos = campeonatos;
-	}
-	public String getTelefoneFixo() {
-		return telefoneFixo;
-	}
-	public void setTelefoneFixo(String telefoneFixo) {
-		this.telefoneFixo = telefoneFixo;
-	}
-	public String getTelefoneMovel() {
-		return telefoneMovel;
-	}
-	public void setTelefoneMovel(String telefoneMovel) {
-		this.telefoneMovel = telefoneMovel;
-	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	public String getRg() {
-		return rg;
-	}
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public String getCref() {
-		return cref;
-	}
-	public void setCref(String cref) {
-		this.cref = cref;
-	}
-	public String getFoto() {
-		return foto;
-	}
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-	
 }

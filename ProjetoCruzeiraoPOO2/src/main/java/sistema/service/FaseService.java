@@ -28,5 +28,9 @@ public class FaseService {
 	{
 		return fases;
 	}
+
+	public void setFases(ArrayList<Fase> fases) {
+		this.fases = fases;
+	}
 	
 }

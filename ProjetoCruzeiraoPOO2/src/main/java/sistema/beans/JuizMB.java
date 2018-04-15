@@ -1,11 +1,15 @@
 package sistema.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
 
+import enumeration.EnumJuizTipo;
+import sistema.modelos.Campeonato;
 import sistema.modelos.Juiz;
 import sistema.service.JuizService;
 
@@ -13,24 +17,30 @@ import sistema.service.JuizService;
 @ApplicationScoped
 public class JuizMB {
 	private JuizService service;
-	private Juiz Juiz;
+	private Juiz juiz;
+	private static Campeonato camp;
 
 	@PostConstruct
     public void init() {
 		service = new JuizService();
-		Juiz = new Juiz();
+		juiz = new Juiz();
     }
 	public void salvar()
 	{
-		service.salvar(Juiz);
-		Juiz = new Juiz();
+
+		if(camp.getJuizes()==null)
+			camp.setJuizes(new ArrayList<Juiz>());
+		camp.getJuizes().add(juiz);
+		
+		service.salvar(juiz);
+		juiz = new Juiz();
 	}
 	
 	public Juiz getJuiz() {
-		return Juiz;
+		return juiz;
 	}
 	public void setJuiz(Juiz Juiz) {
-		this.Juiz = Juiz;
+		this.juiz = Juiz;
 	}
 	public void remover (Juiz Juiz)
 	{
@@ -40,5 +50,25 @@ public class JuizMB {
 	public List<Juiz> getJuizes() {
 		return service.getJuizes();
 	}
-}
+
+	public EnumJuizTipo[] getTipoJuiz(){
+		System.out.println(EnumJuizTipo.values());
+        return EnumJuizTipo.values();
+    }
 	
+	
+	@SuppressWarnings("unchecked")
+	public void editarJuiz(ActionEvent event)
+	{
+		List<Juiz> lista = (List<Juiz>)event.getComponent().getAttributes().get("juizes");
+		camp = (Campeonato)event.getComponent().getAttributes().get("campeonato");
+		if (lista!=null&&lista.size()>0)
+			setJuizes(lista);
+		
+		else
+			setJuizes(new ArrayList<Juiz>());
+	}
+	private void setJuizes(List<Juiz> lista) {
+		service.setJuizes(lista);
+	}
+}

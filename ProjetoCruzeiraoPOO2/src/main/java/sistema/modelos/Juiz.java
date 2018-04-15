@@ -1,9 +1,8 @@
 package sistema.modelos;
 
-import java.util.Enumeration;
 
 public class Juiz {
-	private Enumeration tipo;
+	private String tipo;
 	private Usuario usuario;
 
 	public Usuario getUsuario() {
@@ -13,4 +12,15 @@ public class Juiz {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
+		
 }

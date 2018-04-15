@@ -5,38 +5,46 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui2="http://java.sun.com/jsf/facelets"
->
-	
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
+
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.cadastroLocal.title']}" />
 	</ui:define>
 
 	<ui:define name="principal">
-	  
-	  <h1><p:outputLabel value="#{msg['pages.cadastroLocal.menu']}"/></h1>
-	    
-	  <h:form id="formLocal">	
-		  <p:panelGrid columns="2">
-	      <p:outputLabel value="#{msg['pages.cadastroLocal.endereco']}" />
-	      <p:inputText value="#{localMB.local.endereco}"/>
-		  </p:panelGrid>
-		  <p:commandButton value="#{msg['pages.cadastroLocal.btnSalvar']}" 
-		                 action="#{localMB.salvar()}"
-		                 update=":formLocal, :tabelaLocal"
-		                 />
-       </h:form>
-	
-   	<p:dataTable value="#{localMB.locais}"
-                var="aux"
-                id="tabelaLocal"
-   	>
-      <p:column headerText="#{msg['pages.cadastroLocal.endereco']}">
-        <p:outputLabel value="#{aux.endereco}" />
-      </p:column>
-      
-   </p:dataTable>	
-    
+
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroLocal.menu']}" />
+		</h1>
+
+		<h:form method="post" id="formLocal">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg['pages.cadastroLocal.endereco']}" />
+				<p:inputText value="#{localMB.local.endereco}" />
+			</p:panelGrid>
+			<p:commandButton value="#{msg['pages.cadastroLocal.btnSalvar']}"
+				action="#{localMB.salvar}" update=":formLocal, :formTabelaLocal" />
+		</h:form>
+		
+		<h:form method="post" id="formTabelaLocal">
+			<p:dataTable value="#{localMB.locais}" var="aux"
+				editable="true" editMode="cell">
+				<p:column headerText="#{msg['pages.cadastroLocal.endereco']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.endereco}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.endereco}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroLocal.excluir']}"
+						action="#{localMB.remover(aux)}" update="formTabelaLocal"></p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>
 

@@ -1,0 +1,131 @@
+
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroEquipe.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+		<script type="text/javascript">
+			function handleDiretorDrop(event, ui) {
+				var droppedDiretor = ui.draggable;
+				droppedDiretor.fadeOut('fast');
+			}
+		</script>
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroEquipe.menu']}" />
+		</h1>
+
+		<h:form id="formEquipe">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.nome']}" />
+				<p:inputText value="#{equipeMB.equipe.nome}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.dataFundacao']}" />
+				<p:calendar value="#{equipeMB.equipe.dataFundacao}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.cidade']}" />
+				<p:inputText value="#{equipeMB.equipe.cidade}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroEquipe.diretores']}" />
+				<p:commandButton id="diretorBtn"
+					value="#{msg['pages.cadastroEquipe.diretores']}" type="button" />
+
+			</p:panelGrid>
+			<p:overlayPanel id="DiretorPanel" for="diretorBtn" hideEffect="fade"
+				dynamic="true" style="width:600px">
+				<p:fieldset id="availableDiretoresField"
+					legend="#{msg['pages.cadastroEquipe.diretores']}">
+					<p:dataTable id="availableDiretores" var="diretor"
+						value="#{usuarioMB.cadastros}">
+						<p:column style="width:20px">
+							<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+							<p:draggable for="dragIcon" revert="true" helper="clone" />
+						</p:column>
+
+						<p:column headerText="#{msg['pages.cadastroEquipe.diretorNome']}">
+							<h:outputText value="#{diretor.nome}" />
+						</p:column>
+
+					</p:dataTable>
+				</p:fieldset>
+
+				<p:fieldset id="selectedDiretores" legend="Selected Diretores"
+					style="margin-top:20px">
+					<p:outputPanel id="dropDiretoresArea">
+						<h:outputText value="#{msg['pages.cadastroEquipe.dropAqui']}"
+							rendered="#{empty equipeMB.equipe.diretores}"
+							style="font-size:24px;" />
+						<p:dataTable id="selectedDiretoresTable" var="Diretor"
+							value="#{equipeMB.equipe.diretores}"
+							rendered="#{not empty equipeMB.equipe.diretores}">
+							<p:column headerText="{msg['pages.cadastroEquipe.diretorNome']}">
+								<h:outputText value="#{Diretor.nome}" />
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</p:fieldset>
+
+				<p:droppable for="selectedDiretores" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="availableDiretores" onDrop="handleDiretoresDrop">
+					<p:ajax listener="#{EquipeMB.onDiretorDrop}"
+						update="dropDiretoresArea availableDiretores" />
+				</p:droppable>
+
+			</p:overlayPanel>
+			<p:commandButton value="#{msg['pages.cadastroEquipe.btnSalvar']}"
+				action="#{equipeMB.salvar}" update=":formEquipe, :formTabelaEquipe" />
+		</h:form>
+
+		<h:form method="post" id="formTabelaEquipe">
+			<p:dataTable value="#{equipeMB.equipes}" var="aux"
+				 editable="true" editMode="cell">
+				<p:column headerText="#{msg['pages.cadastroEquipe.nome']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.nome}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroEquipe.dataFundacao']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.dataFundacao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.dataFundacao}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroEquipe.cidade']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.cidade}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.cidade}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroEquipe.diretores']}">
+					<p:outputLabel value="#{aux.diretores}" />
+				</p:column>
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroEquipe.excluir']}"
+						action="#{equipeMB.remover(aux)}"
+						update="formTabelaEquipe"></p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

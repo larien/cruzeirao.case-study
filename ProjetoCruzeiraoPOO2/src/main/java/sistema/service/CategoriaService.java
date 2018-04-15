@@ -7,7 +7,7 @@ import sistema.modelos.Categoria;
 
 public class CategoriaService {
 
-	private ArrayList <Categoria> categorias = new ArrayList<Categoria>();
+	private List <Categoria> categorias = new ArrayList<Categoria>();
 	
 	public CategoriaService()
 	{
@@ -28,5 +28,10 @@ public class CategoriaService {
 	{
 		return categorias;
 	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+	
 	
 }

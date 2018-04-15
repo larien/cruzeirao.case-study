@@ -1,14 +1,7 @@
 package sistema.modelos;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import org.primefaces.event.DragDropEvent;
-
-import sistema.beans.JuizMB;
 
 public class Campeonato {
 	private String nome;
@@ -20,14 +13,6 @@ public class Campeonato {
 	private Date dataInicioCampeonato;
 	private Date dataFimCampeonato;
 	private double valorTaxa;
-	/*
-	public Campeonato() 
-	{
-		this.locais = new ArrayList<Local>();
-		this.juizes = new ArrayList<Juiz>();
-		this.categorias = new ArrayList<Categoria>();
-	}
-	*/
 	public String getNome() {
 		return nome;
 	}

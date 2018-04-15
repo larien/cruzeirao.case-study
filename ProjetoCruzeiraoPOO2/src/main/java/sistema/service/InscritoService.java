@@ -28,5 +28,9 @@ public class InscritoService {
 	{
 		return inscritos;
 	}
+
+	public void setInscritos(ArrayList<Inscrito> inscritos) {
+		this.inscritos = inscritos;
+	}
 	
 }

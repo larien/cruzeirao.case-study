@@ -1,0 +1,130 @@
+
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroCategoria.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroCategoria.menu']}" />
+		</h1>
+		<h2>
+			<p:outputLabel value="#{msg['pages.cadastroCampeonato.nome']} : " />
+			<p:outputLabel value="#{categoriaMB.categoria.campeonato.nome}" />
+		</h2>
+
+		<h:form id="formCategoria">
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="#{msg['pages.cadastroCategoria.nome']}" />
+				<p:inputText value="#{categoriaMB.categoria.nome}" />
+
+				<p:outputLabel
+					value="#{msg['pages.cadastroCategoria.nascidosApartirDe']}" />
+				<p:calendar value="#{categoriaMB.categoria.nascidosApartirDe}" />
+
+				<p:outputLabel value="#{msg['pages.cadastroCategoria.sexo']}" />
+				<p:selectOneRadio id="sexoRadio" value="{categoriaMB.setSexo}">
+					<f:selectItem itemLabel="Masculino" itemValue="Masc" />
+					<f:selectItem itemLabel="Feminino" itemValue="Fem" />
+				</p:selectOneRadio>
+
+				<p:outputLabel
+					value="#{msg['pages.cadastroCategoria.maxJogadores']}" />
+				<p:inputText id="slider1"
+					value="#{categoriaMB.categoria.maxJogadores}"
+					style=" margin-top: 10px">
+					<p:slider for="slider1" style=" margin-top: 10px" />
+				</p:inputText>
+
+				<p:outputLabel value="#{msg['pages.cadastroCategoria.maxTimes']}" />
+				<p:inputText id="slider2" value="#{categoriaMB.categoria.maxTimes}"
+					style=" margin-top: 10px">
+					<p:slider for="slider2" style=" margin-top: 10px" />
+				</p:inputText>
+
+			</p:panelGrid>
+
+			<p:commandButton value="#{msg['pages.cadastroCategoria.btnSalvar']}"
+				action="#{categoriaMB.salvar}"
+				update=":formCategoria, :formTabelaCategoria" />
+		</h:form>
+
+		<h:form method="post" id="formTabelaCategoria">
+			<p:dataTable value="#{categoriaMB.categorias}" var="aux"
+				id="tabelaCategoria" editable="true" editMode="cell">
+				<p:column headerText="#{msg['pages.cadastroCategoria.nome']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.nome}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				
+				<p:column
+					headerText="#{msg['pages.cadastroCategoria.nascidosApartirDe']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.nascidosApartirDe}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.nascidosApartirDe}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCategoria.sexo']}">
+					<p:outputLabel value="#{aux.sexo}" />
+				</p:column>
+				<p:column
+					headerText="#{msg['pages.cadastroCategoria.maxJogadores']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.maxJogadores}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputNumber value="#{aux.maxJogadores}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCategoria.maxTimes']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.maxTimes}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputNumber value="#{aux.maxTimes}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroInscricao.cadastrar']}">
+					<p:commandButton value="#{msg['pages.cadastroInscricao.cadastrar']}"
+						action="cadastroInscricao.xhtml" actionListener="#{inscricaoMB.editarInscricao}">
+						<!-- Parametros para passar nos metodos -->
+						<f:attribute name="inscricoes" value="#{aux.inscricoes}" />
+						<f:attribute name="categoria" value="#{aux}" />
+					</p:commandButton>
+				</p:column>
+				<p:column value="remover">
+					<p:commandLink value="#{msg['pages.cadastroCategoria.excluir']}"
+						action="#{categoriaMB.remover(aux)}"
+						update="formTabelaCategoria"></p:commandLink>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		<p:commandButton action="cadastroCampeonato.xhtml"
+			value="#{msg['pages.cadastroCategoria.voltar']}" />
+	</ui:define>
+</ui:composition>

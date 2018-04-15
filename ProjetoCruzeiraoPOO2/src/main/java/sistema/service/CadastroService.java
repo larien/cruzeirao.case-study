@@ -3,28 +3,28 @@ package sistema.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import sistema.modelos.Cadastro;
+import sistema.modelos.Usuario;
 
 public class CadastroService {
 
-	private ArrayList <Cadastro> cadastros = new ArrayList<Cadastro>();
+	private ArrayList <Usuario> cadastros = new ArrayList<Usuario>();
 	
 	public CadastroService()
 	{
 
 	}
 	
-	public void salvar(Cadastro cadastro)
+	public void salvar(Usuario cadastro)
 	{
 		cadastros.add(cadastro);
 	}
 
-	public void remove(Cadastro cadastro)
+	public void remove(Usuario cadastro)
 	{
 		cadastros.remove(cadastro);
 	}
 
-	public List <Cadastro> getCadastros()
+	public List <Usuario> getCadastros()
 	{
 		return cadastros;
 	}
