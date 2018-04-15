@@ -9,7 +9,7 @@ import enumeration.EnumFaseFormato;
 public class Fase {
 	private Date dataInicio;
 	private Date dataFim;
-	private Enumeration<EnumFaseFormato> formato;
+	private String formato;
 	private Categoria categoria;
 	private List<Grupo> grupos;
 	private int numero;
@@ -43,11 +43,12 @@ public class Fase {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	public Enumeration<EnumFaseFormato> getFormato() {
+	public String getFormato() {
 		return formato;
 	}
-	public void setFormato(Enumeration<EnumFaseFormato> formato) {
+	public void setFormato(String formato) {
 		this.formato = formato;
 	}
+
 	
 }

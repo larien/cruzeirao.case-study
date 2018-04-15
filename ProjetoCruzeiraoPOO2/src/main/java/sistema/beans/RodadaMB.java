@@ -1,10 +1,15 @@
 package sistema.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
 
+import sistema.modelos.Campeonato;
+import sistema.modelos.Categoria;
+import sistema.modelos.Grupo;
 import sistema.modelos.Rodada;
 import sistema.service.RodadaService;
 
@@ -13,6 +18,7 @@ import sistema.service.RodadaService;
 public class RodadaMB {
 	private RodadaService service = new RodadaService();
 	private Rodada Rodada = new Rodada();
+	private static Grupo grupo;
 
 	public void salvar()
 	{
@@ -33,6 +39,17 @@ public class RodadaMB {
 
 	public List<Rodada> getRodadas() {
 		return service.getRodadas();
+	}
+
+	@SuppressWarnings("unchecked")
+	public void editarRodada(ActionEvent event)
+	{
+		grupo = (Grupo)event.getComponent().getAttributes().get("grupo");
+
+		if (grupo.getRodadas()==null)
+			grupo.setRodadas(new ArrayList<Rodada>());
+		service.setRodadas(grupo.getRodadas());
+		Rodada.setGrupo(grupo);
 	}
 }
 	

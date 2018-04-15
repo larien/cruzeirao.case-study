@@ -7,7 +7,7 @@ import sistema.modelos.Grupo;
 
 public class GrupoService {
 
-	private ArrayList <Grupo> grupos = new ArrayList<Grupo>();
+	private List <Grupo> grupos = new ArrayList<Grupo>();
 	
 	public GrupoService()
 	{
@@ -27,6 +27,10 @@ public class GrupoService {
 	public List <Grupo> getGrupos()
 	{
 		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> list) {
+		this.grupos = list;
 	}
 	
 }

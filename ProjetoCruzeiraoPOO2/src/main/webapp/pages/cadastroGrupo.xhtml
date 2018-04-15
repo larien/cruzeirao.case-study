@@ -19,17 +19,12 @@
 
 		<h:form method="post" id="formGrupo">
 			<p:panelGrid columns="2">
-				<p:outputLabel value="#{msg['pages.cadastroGrupo.fase']}" />
-				<p:inputText value="#{grupoMB.grupo.fase}" />
 				
 				<p:outputLabel value="#{msg['pages.cadastroGrupo.nome']}" />
 				<p:inputText value="#{grupoMB.grupo.nome}" />
 
 				<p:outputLabel value="#{msg['pages.cadastroGrupo.numero']}" />
-				<p:inputText value="#{grupoMB.grupo.numero}" />
-
-				<p:outputLabel value="#{msg['pages.cadastroGrupo.rodadas']}" />
-				<p:inputText value="#{grupoMB.grupo.rodadas}" />
+				<p:inputNumber value="#{grupoMB.grupo.numero}" />
 
 			</p:panelGrid>
 			
@@ -40,16 +35,6 @@
 		<h:form method="post" id="formTabelaGrupo">
 			<p:dataTable value="#{grupoMB.grupos}" var="aux"
 				editable="true" editMode="cell">
-				<p:column headerText="#{msg['pages.cadastroGrupo.fase']}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{aux.fase}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{aux.fase}" style="width:96%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
 				<p:column headerText="#{msg['pages.cadastroGrupo.nome']}">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -72,16 +57,14 @@
 					</p:cellEditor>
 				</p:column>
 				
-				
 				<p:column headerText="#{msg['pages.cadastroGrupo.rodadas']}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{aux.rodadas}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{aux.rodadas}" style="width:96%" />
-						</f:facet>
-					</p:cellEditor>
+					<p:commandButton
+						value="#{msg['pages.cadastroGrupo.rodadas']}"
+						action="cadastroRodada.xhtml"
+						actionListener="#{rodadaMB.editarRodada}">
+						<!-- Parametros para passar nos metodos -->
+						<f:attribute name="grupo" value="#{aux}" />
+					</p:commandButton>
 				</p:column>
 				
 				<p:column value="remover">

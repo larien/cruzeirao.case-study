@@ -19,14 +19,9 @@
 
 		<h:form method="post" id="formRodada">
 			<p:panelGrid columns="2">
-				<p:outputLabel value="#{msg['pages.cadastroRodada.grupo']}" />
-				<p:inputText value="#{rodadaMB.rodada.grupo}" />
 				
 				<p:outputLabel value="#{msg['pages.cadastroRodada.numero']}" />
-				<p:inputText value="#{rodadaMB.rodada.numero}" />
-
-				<p:outputLabel value="#{msg['pages.cadastroRodada.partidas']}" />
-				<p:inputText value="#{rodadaMB.rodada.partidas}" />
+				<p:inputNumber value="#{rodadaMB.rodada.numero}" />
 
 			</p:panelGrid>
 			
@@ -38,6 +33,29 @@
 			<p:dataTable value="#{rodadaMB.rodadas}" var="aux"
 				editable="true" editMode="cell">
 				
+				
+				
+				<p:column headerText="#{msg['pages.cadastroRodada.numero']}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{aux.numero}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{aux.numero}" style="width:96%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroRodada.partida']}">
+					
+					<p:commandButton
+						value="#{msg['pages.cadastroRodada.partida']}"
+						action="cadastroPartida.xhtml"
+						actionListener="#{partidaMB.editarPartida}">
+						<!-- Parametros para passar nos metodos -->
+						<f:attribute name="rodada" value="#{aux}" />
+					</p:commandButton>
+				</p:column>
 				<p:column value="remover">
 					<p:commandLink value="#{msg['pages.cadastroRodada.excluir']}"
 						action="#{rodadaMB.remover(aux)}" update="formTabelaRodada"></p:commandLink>

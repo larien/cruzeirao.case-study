@@ -7,7 +7,7 @@ import sistema.modelos.Partida;
 
 public class PartidaService {
 
-	private ArrayList <Partida> partidas = new ArrayList<Partida>();
+	private List <Partida> partidas = new ArrayList<Partida>();
 	
 	public PartidaService()
 	{
@@ -29,8 +29,8 @@ public class PartidaService {
 		return partidas;
 	}
 
-	public void setPartidas(ArrayList<Partida> partidas) {
+	public void setPartidas(List<Partida> partidas) {
 		this.partidas = partidas;
 	}
-	
+
 }

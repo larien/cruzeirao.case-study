@@ -7,7 +7,7 @@ import sistema.modelos.Rodada;
 
 public class RodadaService {
 
-	private ArrayList <Rodada> rodadas = new ArrayList<Rodada>();
+	private List <Rodada> rodadas = new ArrayList<Rodada>();
 	
 	public RodadaService()
 	{
@@ -29,8 +29,8 @@ public class RodadaService {
 		return rodadas;
 	}
 
-	public void setRodadas(ArrayList<Rodada> rodadas) {
-		this.rodadas = rodadas;
+	public void setRodadas(List<Rodada> list) {
+		this.rodadas = list;
 	}
 	
 }

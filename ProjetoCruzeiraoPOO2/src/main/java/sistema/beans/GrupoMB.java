@@ -1,10 +1,15 @@
 package sistema.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
 
+import sistema.modelos.Campeonato;
+import sistema.modelos.Categoria;
+import sistema.modelos.Fase;
 import sistema.modelos.Grupo;
 import sistema.service.GrupoService;
 
@@ -13,6 +18,7 @@ import sistema.service.GrupoService;
 public class GrupoMB {
 	private GrupoService service = new GrupoService();
 	private Grupo Grupo = new Grupo();
+	private static Fase fase;
 
 	public void salvar()
 	{
@@ -33,6 +39,16 @@ public class GrupoMB {
 
 	public List<Grupo> getGrupos() {
 		return service.getGrupos();
+	}
+	@SuppressWarnings("unchecked")
+	public void editarGrupo(ActionEvent event)
+	{
+		fase = (Fase)event.getComponent().getAttributes().get("fase");
+
+		if (fase.getGrupos()==null)
+			fase.setGrupos(new ArrayList<Grupo>());
+		service.setGrupos(fase.getGrupos());
+		Grupo.setFase(fase);
 	}
 }
 	

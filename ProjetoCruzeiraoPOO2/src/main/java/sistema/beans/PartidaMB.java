@@ -1,11 +1,15 @@
 package sistema.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
 
+import sistema.modelos.Grupo;
 import sistema.modelos.Partida;
+import sistema.modelos.Rodada;
 import sistema.service.PartidaService;
 
 @ManagedBean(eager=true)
@@ -13,6 +17,7 @@ import sistema.service.PartidaService;
 public class PartidaMB {
 	private PartidaService service = new PartidaService();
 	private Partida Partida = new Partida();
+	private static Rodada rodada;
 
 	public void salvar()
 	{
@@ -33,6 +38,16 @@ public class PartidaMB {
 
 	public List<Partida> getPartidas() {
 		return service.getPartidas();
+	}
+
+	@SuppressWarnings("unchecked")
+	public void editarPartida(ActionEvent event)
+	{
+		rodada = (Rodada)event.getComponent().getAttributes().get("rodada");
+
+		if (rodada.getPartidas()==null)
+			rodada.setPartidas(new ArrayList<Partida>());
+		service.setPartidas(rodada.getPartidas());
 	}
 }
 	

@@ -7,7 +7,7 @@ import sistema.modelos.Fase;
 
 public class FaseService {
 
-	private ArrayList <Fase> fases = new ArrayList<Fase>();
+	private List <Fase> fases = new ArrayList<Fase>();
 	
 	public FaseService()
 	{
@@ -29,8 +29,8 @@ public class FaseService {
 		return fases;
 	}
 
-	public void setFases(ArrayList<Fase> fases) {
-		this.fases = fases;
+	public void setFases(List<Fase> list) {
+		this.fases = list;
 	}
 	
 }
