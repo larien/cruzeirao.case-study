@@ -3,6 +3,7 @@ package sistema.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
@@ -11,6 +12,7 @@ import sistema.modelos.Campeonato;
 import sistema.modelos.Categoria;
 import sistema.modelos.Inscricao;
 import sistema.modelos.Juiz;
+import sistema.service.CategoriaService;
 import sistema.service.InscricaoService;
 
 @ManagedBean(eager=true)
@@ -20,12 +22,14 @@ public class InscricaoMB {
 	private Inscricao Inscricao = new Inscricao();
 	private static Categoria cat;
 
+	@PostConstruct
+    public void init() {
+		service = new InscricaoService();
+		Inscricao = new Inscricao();
+    }
+	//classe que pega a lista de categoria vindo da data tagle do campeonato
 	public void salvar()
 	{
-		if(cat.getInscricoes()==null)
-			cat.setInscricoes(new ArrayList<Inscricao>());
-		cat.getInscricoes().add(Inscricao);
-		
 		service.salvar(Inscricao);
 		Inscricao = new Inscricao();
 	}
@@ -33,13 +37,10 @@ public class InscricaoMB {
 	@SuppressWarnings("unchecked")
 	public void editarInscricao(ActionEvent event)
 	{
-		ArrayList<Inscricao> lista = (ArrayList<Inscricao>)event.getComponent().getAttributes().get("inscricoes");
 		cat = (Categoria)event.getComponent().getAttributes().get("categoria");
-		if (lista!=null&&lista.size()>0)
-			cat.setInscricoes(lista);
-		
-		else
+		if(cat.getInscricoes()==null)
 			cat.setInscricoes(new ArrayList<Inscricao>());
+		service.setInscricoes(cat.getInscricoes());
 		Inscricao.setCategoria(cat);
 	}
 	
@@ -61,5 +62,7 @@ public class InscricaoMB {
 	{
 		service.setInscricoes(incricoes);
 	}
+	
+	
 }
 	

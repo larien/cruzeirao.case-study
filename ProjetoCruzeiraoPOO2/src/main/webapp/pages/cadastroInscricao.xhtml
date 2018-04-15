@@ -24,6 +24,17 @@
 		<h:form id="formInscricao">
 			<p:panelGrid columns="2">
 				
+				<p:outputLabel value="#{msg['pages.cadastroInscricao.equipe']}" />
+				<p:selectOneListbox id="advanced" value="#{inscricaoMB.inscricao.equipe}"
+					converter="equipeConverter" var="t" filter="true"
+					filterMatchMode="contains">
+					<f:selectItems value="#{equipeMB.equipes}" var="equipe"
+						itemLabel="#{equipe.nome}" itemValue="#{equipe}" />
+					<p:column>
+						<h:outputText value="#{t.nome}" />
+					</p:column>
+				</p:selectOneListbox>
+				
 				<p:outputLabel value="#{msg['pages.cadastroInscricao.numero']}" />
 				<p:inputText value="#{inscricaoMB.inscricao.numero}" />
 
@@ -33,9 +44,6 @@
 				<p:outputLabel value="#{msg['pages.cadastroInscricao.validada']}" />
 				<p:inputText value="#{inscricaoMB.inscricao.validada}" />
 				
-				
-				
-
 			</p:panelGrid>
 
 			<p:commandButton value="#{msg['pages.cadastroInscricao.btnSalvar']}"
@@ -48,12 +56,7 @@
 				id="tabelaInscricao" editable="true" editMode="cell">
 				
 				<p:column headerText="#{msg['pages.cadastroInscricao.equipe']}">
-				
-					<p:commandButton value="#{msg['pages.cadastroInscricao.equipe']}"
-						action="cadastroEquipe.xhtml" actionListener="#{equipeMB.editarEquipe}">
-						<!-- Parametros para passar nos metodos -->
-						<f:attribute name="inscricao" value="#{aux}" />
-					</p:commandButton>
+				<p:outputLabel value="#{aux.equipe}" />
 				</p:column>
 				
 				<p:column headerText="#{msg['pages.cadastroInscricao.numero']}">
@@ -93,7 +96,6 @@
 					<p:commandButton value="#{msg['pages.cadastroInscricao.inscrito']}"
 						action="cadastroInscrito.xhtml" actionListener="#{inscritoMB.editarInscrito}">
 						<!-- Parametros para passar nos metodos -->
-						<f:attribute name="inscritos" value="#{aux.inscritos}" />
 						<f:attribute name="inscricao" value="#{aux}" />
 					</p:commandButton>
 				</p:column>

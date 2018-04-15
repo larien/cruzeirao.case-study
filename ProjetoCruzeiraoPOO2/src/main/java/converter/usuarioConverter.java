@@ -8,8 +8,8 @@ import sistema.beans.UsuarioMB;
 import sistema.modelos.Usuario;
 
 
-@FacesConverter("juizConverter")
-public class juizConverter implements Converter{
+@FacesConverter("usuarioConverter")
+public class usuarioConverter implements Converter{
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
 		if(value != null && value.trim().length() > 0) {
 	        try {

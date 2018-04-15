@@ -7,7 +7,7 @@ import sistema.modelos.Inscrito;
 
 public class InscritoService {
 
-	private ArrayList <Inscrito> inscritos = new ArrayList<Inscrito>();
+	private List <Inscrito> inscritos = new ArrayList<Inscrito>();
 	
 	public InscritoService()
 	{
@@ -29,8 +29,8 @@ public class InscritoService {
 		return inscritos;
 	}
 
-	public void setInscritos(ArrayList<Inscrito> inscritos) {
-		this.inscritos = inscritos;
+	public void setInscritos(List<Inscrito> list) {
+		this.inscritos = list;
 	}
 	
 }

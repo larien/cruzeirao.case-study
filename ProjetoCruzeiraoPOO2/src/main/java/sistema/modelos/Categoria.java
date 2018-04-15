@@ -8,7 +8,7 @@ package sistema.modelos;
  
  public class Categoria {
  	private String nome;
- 	private Date nascidosApartirDe;
+ 	private int nascidosApartirDe;
  	private List<Inscricao> inscricoes;
  	private Campeonato campeonato;
  	private List<Fase> fases;
@@ -27,13 +27,14 @@ package sistema.modelos;
  	public void setNome(String nome) {
  		this.nome = nome;
  	}
- 	public Date getNascidosApartirDe() {
- 		return nascidosApartirDe;
- 	}
- 	public void setNascidosApartirDe(Date nascidosApartirDe) {
- 		this.nascidosApartirDe = nascidosApartirDe;
- 	}
- 	public Campeonato getCampeonato() {
+ 	
+ 	public int getNascidosApartirDe() {
+		return nascidosApartirDe;
+	}
+	public void setNascidosApartirDe(int nascidosApartirDe) {
+		this.nascidosApartirDe = nascidosApartirDe;
+	}
+	public Campeonato getCampeonato() {
  		return campeonato;
  	}
  	public void setCampeonato(Campeonato campeonato) {
@@ -87,5 +88,9 @@ package sistema.modelos;
  	public void setSexo(Enumeration<EnumSexo> sexo) {
  		this.sexo = sexo;
  	}
- 	
+	@Override
+	public String toString()
+	{
+		return nome;
+	}
  }

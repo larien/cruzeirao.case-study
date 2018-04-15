@@ -10,6 +10,7 @@ import javax.faces.event.ActionEvent;
 
 import enumeration.EnumJuizTipo;
 import sistema.modelos.Campeonato;
+import sistema.modelos.Categoria;
 import sistema.modelos.Juiz;
 import sistema.service.JuizService;
 
@@ -27,11 +28,6 @@ public class JuizMB {
     }
 	public void salvar()
 	{
-
-		if(camp.getJuizes()==null)
-			camp.setJuizes(new ArrayList<Juiz>());
-		camp.getJuizes().add(juiz);
-		
 		service.salvar(juiz);
 		juiz = new Juiz();
 	}
@@ -56,17 +52,14 @@ public class JuizMB {
         return EnumJuizTipo.values();
     }
 	
-	
 	@SuppressWarnings("unchecked")
 	public void editarJuiz(ActionEvent event)
 	{
-		List<Juiz> lista = (List<Juiz>)event.getComponent().getAttributes().get("juizes");
 		camp = (Campeonato)event.getComponent().getAttributes().get("campeonato");
-		if (lista!=null&&lista.size()>0)
-			setJuizes(lista);
+		if (camp.getJuizes()==null)
+			camp.setJuizes(new ArrayList<Juiz>());
+		service.setJuizes(camp.getJuizes());
 		
-		else
-			setJuizes(new ArrayList<Juiz>());
 	}
 	private void setJuizes(List<Juiz> lista) {
 		service.setJuizes(lista);

@@ -32,5 +32,10 @@ public class Equipe {
 	public void setDiretores(List<Usuario> diretores) {
 		this.diretores = diretores;
 	}
-	
+
+	@Override
+	public String toString()
+	{
+		return nome;
+	}
 }

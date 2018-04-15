@@ -19,7 +19,6 @@ import sistema.service.EquipeService;
 public class EquipeMB {
 	private EquipeService service = new EquipeService();
 	private Equipe Equipe = new Equipe();
-	private static Inscricao inscr;
 
 	@PostConstruct
     public void init() {
@@ -28,8 +27,8 @@ public class EquipeMB {
     }
 	public void salvar()
 	{
-		service.salvar(inscr.getEquipe());
-		inscr.setEquipe(new Equipe());
+		service.salvar(Equipe);
+		Equipe = new Equipe();
 	}
 	
 	public Equipe getEquipe() {
@@ -47,12 +46,5 @@ public class EquipeMB {
 		return service.getEquipes();
 	}
 	
-	public void editarEquipe(ActionEvent event)
-	{
-		inscr = (Inscricao)event.getComponent().getAttributes().get("inscricao");
-		if(inscr.getEquipe()==null)
-			inscr.setEquipe(new Equipe());
-
-	}
 }
 	

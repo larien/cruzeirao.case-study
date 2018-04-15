@@ -32,7 +32,7 @@
 
 				<p:outputLabel value="#{msg['pages.cadastroJuiz.usuario']}" />
 				<p:selectOneListbox id="advanced" value="#{juizMB.juiz.usuario}"
-					converter="juizConverter" var="t" filter="true"
+					converter="usuarioConverter" var="t" filter="true"
 					filterMatchMode="contains">
 					<f:selectItems value="#{usuarioMB.cadastros}" var="usuario"
 						itemLabel="#{usuario.nome}" itemValue="#{usuario}" />

@@ -18,7 +18,7 @@
 		</h1>
 		<h2>
 			<p:outputLabel value="#{msg['pages.cadastroCampeonato.nome']} : " />
-			<p:outputLabel value="#{categoriaMB.categoria.campeonato.nome}" />
+			<p:outputLabel value="#{categoriaMB.categoria.campeonato}" />
 		</h2>
 
 		<h:form id="formCategoria">
@@ -29,8 +29,7 @@
 
 				<p:outputLabel
 					value="#{msg['pages.cadastroCategoria.nascidosApartirDe']}" />
-				<p:calendar value="#{categoriaMB.categoria.nascidosApartirDe}" />
-
+				<p:inputNumber value="#{categoriaMB.categoria.nascidosApartirDe}" />
 				<p:outputLabel value="#{msg['pages.cadastroCategoria.sexo']}" />
 				<p:selectOneRadio id="sexoRadio" value="{categoriaMB.setSexo}">
 					<f:selectItem itemLabel="Masculino" itemValue="Masc" />

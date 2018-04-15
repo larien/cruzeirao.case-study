@@ -67,4 +67,9 @@ public class Campeonato {
 	public void setValorTaxa(double valorTaxa) {
 		this.valorTaxa = valorTaxa;
 	}
+	@Override
+	public String toString()
+	{
+		return nome;
+	}
 }

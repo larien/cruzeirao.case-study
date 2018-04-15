@@ -48,5 +48,10 @@ public class Inscrito {
 		this.tipo = tipo;
 	}
 	
-	
+
+	@Override
+	public String toString()
+	{
+		return tipo+" "+usuario.getNome();
+	}
 }

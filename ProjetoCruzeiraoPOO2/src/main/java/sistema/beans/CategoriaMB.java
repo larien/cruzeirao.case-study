@@ -36,11 +36,7 @@ public class CategoriaMB {
     }
 	public void salvar()
 	{
-		System.out.println(camp);
 		service.salvar(categoria);
-		if(camp.getCategorias()==null)
-			camp.setCategorias(new ArrayList<Categoria>());
-		camp.getCategorias().add(categoria);
 		categoria = new Categoria();
 	}
 	
@@ -48,13 +44,11 @@ public class CategoriaMB {
 	@SuppressWarnings("unchecked")
 	public void editarCategoria(ActionEvent event)
 	{
-		List<Categoria> lista = (List<Categoria>)event.getComponent().getAttributes().get("categorias");
 		camp = (Campeonato)event.getComponent().getAttributes().get("campeonato");
-		if (lista!=null&&lista.size()>0)
-			setCategorias(lista);
-		
-		else
-			setCategorias(new ArrayList<Categoria>());
+
+		if (camp.getCategorias()==null)
+			camp.setCategorias(new ArrayList<Categoria>());
+		service.setCategorias(camp.getCategorias());
 		categoria.setCampeonato(camp);
 	}
 	

@@ -21,13 +21,13 @@
 			<p:outputLabel value="#{inscritoMB.inscrito.inscricao}" />
 		</h2>
 
-		<h:form id="forminscrito">
+		<h:form id="formInscrito">
 			<p:panelGrid columns="2">
 
 				<p:outputLabel value="#{msg['pages.cadastroinscrito.usuario']}" />
 				
 				<p:selectOneListbox id="advanced" value="#{inscritoMB.inscrito.usuario}"
-					converter="juizConverter" var="t" filter="true"
+					converter="usuarioConverter" var="t" filter="true"
 					filterMatchMode="contains">
 					<f:selectItems value="#{usuarioMB.cadastros}" var="usuario"
 						itemLabel="#{usuario.nome}" itemValue="#{usuario}" />
@@ -60,10 +60,10 @@
 
 			<p:commandButton value="#{msg['pages.cadastroinscrito.btnSalvar']}"
 				action="#{inscritoMB.salvar}"
-				update=":forminscrito, :formTabelainscrito" />
+				update=":formInscrito, :formTabelaInscrito" />
 		</h:form>
 
-		<h:form method="post" id="formTabelainscrito">
+		<h:form method="post" id="formTabelaInscrito">
 			<p:dataTable value="#{inscritoMB.inscritos}" var="aux"
 				id="tabelainscrito" editable="true" editMode="cell">
 				<p:column headerText="#{msg['pages.cadastroinscrito.usuario']}">
@@ -125,7 +125,7 @@
 				<p:column value="remover">
 					<p:commandLink value="#{msg['pages.cadastroinscrito.excluir']}"
 						action="#{inscritoMB.remover(aux)}"
-						update="formTabelainscrito"></p:commandLink>
+						update="formTabelaInscrito"></p:commandLink>
 				</p:column>
 			
 			</p:dataTable>

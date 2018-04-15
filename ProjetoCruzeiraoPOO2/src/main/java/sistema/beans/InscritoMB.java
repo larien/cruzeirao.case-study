@@ -3,6 +3,7 @@ package sistema.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
@@ -12,30 +13,36 @@ import enumeration.EnumUsuarioTipo;
 import sistema.modelos.Categoria;
 import sistema.modelos.Inscricao;
 import sistema.modelos.Inscrito;
+import sistema.service.InscricaoService;
 import sistema.service.InscritoService;
 
 @ManagedBean(eager=true)
 @ApplicationScoped
 public class InscritoMB {
-	private InscritoService service = new InscritoService();
-	private Inscrito Inscrito = new Inscrito();
+	private InscritoService service;
+	private Inscrito Inscrito;
 	private static Inscricao inscricao;
+	
+	@PostConstruct
+    public void init() {
+		service = new InscritoService();
+		Inscrito = new Inscrito();
+    }
+	
 	public void salvar()
 	{
-		System.out.println(Inscrito);
-		inscricao.getInscritos().add(Inscrito);
+		service.salvar(Inscrito);
 		Inscrito = new Inscrito();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void editarInscrito(ActionEvent event)
 	{
 		inscricao = (Inscricao)event.getComponent().getAttributes().get("inscricao");
 		if(inscricao.getInscritos()==null)
-			service.setInscritos(new ArrayList<sistema.modelos.Inscrito>());	
-		else
-			service.setInscritos((ArrayList<sistema.modelos.Inscrito>) inscricao.getInscritos());
-		System.out.println(inscricao);
-		System.out.println(service.getInscritos());
+			inscricao.setInscritos(new ArrayList<Inscrito>());	
+		service.setInscritos(inscricao.getInscritos());
+		Inscrito.setInscricao(inscricao);
 	}
 	
 	public Inscrito getInscrito() {

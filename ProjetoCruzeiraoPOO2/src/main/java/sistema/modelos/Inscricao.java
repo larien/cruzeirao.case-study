@@ -52,5 +52,10 @@ public class Inscricao {
 	public void setEquipe(Equipe equipe) {
 		this.equipe = equipe;
 	}
-	
+
+	@Override
+	public String toString()
+	{
+		return numero + categoria.getNome();
+	}
 }
