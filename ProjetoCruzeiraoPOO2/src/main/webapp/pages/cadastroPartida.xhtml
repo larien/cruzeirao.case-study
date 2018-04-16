@@ -12,6 +12,12 @@
 	</ui:define>
 
 	<ui:define name="principal">
+		<script type="text/javascript">
+			function handleJuizDrop(event, ui) {
+				var droppedJuiz = ui.draggable;
+				droppedJuiz.fadeOut('fast');
+			}
+		</script>
 
 		<h1>
 			<p:outputLabel value="#{msg['pages.cadastroPartida.menu']}" />
@@ -21,70 +27,65 @@
 			<p:panelGrid columns="2">
 				<p:outputLabel value="#{msg['pages.cadastroPartida.data']}" />
 				<p:calendar value="#{partidaMB.partida.data}" />
-				
-				<p:outputLabel value="#{msg['pages.cadastroPartida.equipeMandante']}" />
-				<p:selectOneMenu id="equipeMandante" value="#{partidaMB.partida.equipeMandante}"
-					style="width:167px">
+
+				<p:outputLabel
+					value="#{msg['pages.cadastroPartida.equipeMandante']}" />
+					
+				<p:selectOneListbox id="equipeMandante"
+					value="#{partidaMB.partida.equipeMandante}" style="width:167px">
 					<f:selectItem itemLabel="Selecione" />
-					<f:selectItems value="#{partidaMB.partida.rodada.grupo.fase.categoria.inscricoes}" var="tipo"
-						itemValue="#{tipo}" itemLabel="#{tipo.equipe.nome}" />
+					<f:selectItems
+						value="#{partidaMB.partida.rodada.grupo.fase.categoria.inscricoes}"
+						var="equipeMandante" itemValue="#{equipeMandante}" itemLabel="#{equipeMandante.equipe.nome}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="#{msg['pages.cadastroPartida.equipeVisitante']}" />
-				<p:selectOneMenu id="equipeMandante" value="#{partidaMB.partida.equipeVisitante}"
-					style="width:167px">
+				<p:outputLabel
+					value="#{msg['pages.cadastroPartida.equipeVisitante']}" />
+				<p:selectOneMenu id="equipeVisitante"
+					value="#{partidaMB.partida.equipeVisitante}" style="width:167px">
 					<f:selectItem itemLabel="Selecione" />
-					<f:selectItems value="#{partidaMB.partida.rodada.grupo.fase.categoria.inscricoes}" var="tipo"
-						itemValue="#{tipo}" itemLabel="#{tipo.equipe.nome}" />
+					<f:selectItems
+						value="#{partidaMB.partida.rodada.grupo.fase.categoria.inscricoes}"
+						var="equipeVisitante" itemValue="#{equipeVisitante}" itemLabel="#{equipeVisitante.equipe.nome}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="#{msg['pages.cadastroPartida.grupo']}" />
-				<p:selectOneMenu id="equipeMandante" value="#{partidaMB.partida.grupo}"
+				<p:selectOneMenu id="grupo" value="#{partidaMB.partida.grupo}"
 					style="width:167px">
 					<f:selectItem itemLabel="Selecione" />
-					<f:selectItems value="#{partidaMB.partida.rodada.grupo.rodadas}" var="tipo"
-						itemValue="#{tipo}" itemLabel="#{tipo.numero}" />
+					<f:selectItems value="#{partidaMB.partida.grupo.fase.grupos}"
+						var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.numero}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="#{msg['pages.cadastroPartida.juizes']}" />
-				<p:inputText value="#{partidaMB.partida.juizes}" />
-				
-				<p:outputLabel value="#{msg['pages.cadastroPartida.local']}" />
-				<p:inputText value="#{partidaMB.partida.local}" />
-				
 				<p:outputLabel value="#{msg['pages.cadastroPartida.numero']}" />
 				<p:inputText value="#{partidaMB.partida.numero}" />
-				
-				<p:outputLabel value="#{msg['pages.cadastroPartida.proxPartida']}" />
-				<p:inputText value="#{partidaMB.partida.proxPartida}" />
 
-				<p:outputLabel value="#{msg['pages.cadastroPartida.relatoJuiz']}" />
-				<p:inputText value="#{partidaMB.partida.relatoJuiz}" />
-				
 			</p:panelGrid>
-			
+
 			<p:commandButton value="#{msg['pages.cadastroPartida.btnSalvar']}"
-				action="#{partidaMB.salvar}" update=":formPartida, :formTabelaPartida" />
+				action="#{partidaMB.salvar}"
+				update=":formPartida, :formTabelaPartida" />
 		</h:form>
-		
-		<p:dataTable value="#{partidaMB.partida.rodada.grupo.fase.categoria.inscricoes}" var="aux"
-				editable="true" editMode="cell">
-				<p:column headerText="alguma coisa">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{aux}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{aux}" style="width:96%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-			</p:dataTable>
-		
-		
+
+		<p:dataTable
+			value="#{partidaMB.partida.rodada.grupo.fase.categoria.inscricoes}"
+			var="aux" editable="true" editMode="cell">
+			<p:column headerText="alguma coisa">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{aux}" style="width:96%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+		</p:dataTable>
+
+
 		<h:form method="post" id="formTabelaPartida">
-			<p:dataTable value="#{partidaMB.partidas}" var="aux"
-				editable="true" editMode="cell">
+			<p:dataTable value="#{partidaMB.partidas}" var="aux" editable="true"
+				editMode="cell">
 				<p:column headerText="#{msg['pages.cadastroPartida.data']}">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -95,7 +96,8 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				<p:column headerText="#{msg['pages.cadastroPartida.equipeMandante']}">
+				<p:column
+					headerText="#{msg['pages.cadastroPartida.equipeMandante']}">
 					<p:cellEditor>
 						<f:facet name="output">
 							<p:outputLabel value="#{aux.equipeMandante}" />
@@ -105,8 +107,9 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
-				<p:column headerText="#{msg['pages.cadastroPartida.equipeVisitante']}">
+
+				<p:column
+					headerText="#{msg['pages.cadastroPartida.equipeVisitante']}">
 					<p:cellEditor>
 						<f:facet name="output">
 							<p:outputLabel value="#{aux.equipeVisitante}" />
@@ -116,7 +119,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
 				<p:column headerText="#{msg['pages.cadastroPartida.grupo']}">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -127,18 +130,67 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
+
+
+
 				<p:column headerText="#{msg['pages.cadastroPartida.juizes']}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{aux.juizes}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{aux.juizes}" style="width:96%" />
-						</f:facet>
-					</p:cellEditor>
+					<p:commandButton id="juizBtn"
+						value="#{msg['pages.cadastroPartida.juizes']}" type="button" />
+
+					<!--  painel para o cadastro de juizes -->
+					<p:overlayPanel id="juizPanel" for="juizBtn" hideEffect="fade"
+						dynamic="true" style="width:600px">
+						<!--  lista todos os juizes cadastrados -->
+						<p:fieldset id="availableJuizesField"
+							legend="#{msg['pages.cadastroPartida.juizesDisponiveis']}">
+							<p:dataTable id="availableJuizes" var="juiz"
+								value="#{juizMB.juizes}">
+								<p:column style="width:20px">
+									<h:outputText id="dragIcon"
+										styleClass="ui-icon ui-icon-arrow-4" />
+									<p:draggable for="dragIcon" revert="true" helper="clone" />
+								</p:column>
+
+								<p:column headerText="#{msg['pages.cadastroPartida.usuario']}">
+									<h:outputText value="#{juiz.usuario}" />
+								</p:column>
+
+							</p:dataTable>
+						</p:fieldset>
+
+						<!--  lista todos cadastros salvos na lista do Partida -->
+						<p:fieldset id="selectedJuizes"
+							legend="#{msg['pages.cadastroPartida.juizesSelecionados']}"
+							style="margin-top:20px">
+							<p:outputPanel id="dropJuizArea">
+								<h:outputText value="#{msg['pages.cadastroPartida.dropAqui']}"
+									rendered="#{empty aux.juizes}" style="font-size:24px;" />
+
+								<p:dataTable id="selectedJuizesTable" var="juiz"
+									value="#{aux.juizes}" rendered="#{not empty aux.juizes}">
+									<p:column headerText="#{msg['pages.cadastroPartida.juiz']}">
+										<h:outputText value="#{juiz.usuario}" />
+									</p:column>
+								</p:dataTable>
+							</p:outputPanel>
+						</p:fieldset>
+
+						<p:droppable for="selectedJuizes" tolerance="touch"
+							activeStyleClass="ui-state-highlight"
+							datasource="availableJuizes" onDrop="handleJuizDrop">
+							<f:attribute name="partida" value="#{aux}" />
+							<p:ajax listener="#{partidaMB.onJuizDrop}"
+								update="dropJuizArea availableJuizes" />
+						</p:droppable>
+
+					</p:overlayPanel>
 				</p:column>
-				
+
+
+
+
+
 				<p:column headerText="#{msg['pages.cadastroPartida.local']}">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -149,7 +201,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
 				<p:column headerText="#{msg['pages.cadastroPartida.numero']}">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -160,7 +212,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
 				<p:column headerText="#{msg['pages.cadastroPartida.proxPartida']}">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -171,7 +223,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
 				<p:column headerText="#{msg['pages.cadastroPartida.relatoJuiz']}">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -182,7 +234,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
 				<p:column value="remover">
 					<p:commandLink value="#{msg['pages.cadastroPartida.excluir']}"
 						action="#{partidaMB.remover(aux)}" update="formTabelaPartida"></p:commandLink>

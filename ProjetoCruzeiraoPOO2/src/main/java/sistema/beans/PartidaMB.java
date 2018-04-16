@@ -7,8 +7,13 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.event.DragDropEvent;
+
+import sistema.modelos.Campeonato;
 import sistema.modelos.Grupo;
 import sistema.modelos.Inscricao;
+import sistema.modelos.Juiz;
+import sistema.modelos.Local;
 import sistema.modelos.Partida;
 import sistema.modelos.Rodada;
 import sistema.service.PartidaService;
@@ -51,5 +56,17 @@ public class PartidaMB {
 		service.setPartidas(rodada.getPartidas());
 		Partida.setRodada(rodada);
 	}
+
+	public void onJuizDrop(DragDropEvent ddEvent) {
+        Juiz juiz = ((Juiz) ddEvent.getData());		
+        Partida teste= (Partida) ddEvent.getComponent().getAttributes().get("partida");
+
+        if(teste.getJuizes() == null)
+        	teste.setJuizes(new ArrayList<Juiz>());
+        for (Juiz j : teste.getJuizes())
+        	if(juiz == j)
+        		return;
+        teste.getJuizes().add(juiz);
+    }
 }
 	
