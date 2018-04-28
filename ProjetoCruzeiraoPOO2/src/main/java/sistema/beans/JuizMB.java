@@ -10,7 +10,6 @@ import javax.faces.event.ActionEvent;
 
 import enumeration.EnumJuizTipo;
 import sistema.modelos.Campeonato;
-import sistema.modelos.Categoria;
 import sistema.modelos.Juiz;
 import sistema.service.JuizService;
 

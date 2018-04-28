@@ -9,11 +9,7 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.DragDropEvent;
 
-import sistema.modelos.Campeonato;
-import sistema.modelos.Grupo;
-import sistema.modelos.Inscricao;
 import sistema.modelos.Juiz;
-import sistema.modelos.Local;
 import sistema.modelos.Partida;
 import sistema.modelos.Rodada;
 import sistema.service.PartidaService;

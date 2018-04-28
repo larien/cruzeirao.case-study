@@ -7,8 +7,6 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
-import sistema.modelos.Campeonato;
-import sistema.modelos.Categoria;
 import sistema.modelos.Fase;
 import sistema.modelos.Grupo;
 import sistema.service.GrupoService;

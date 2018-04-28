@@ -8,11 +8,8 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
-import sistema.modelos.Campeonato;
 import sistema.modelos.Categoria;
 import sistema.modelos.Inscricao;
-import sistema.modelos.Juiz;
-import sistema.service.CategoriaService;
 import sistema.service.InscricaoService;
 
 @ManagedBean(eager=true)

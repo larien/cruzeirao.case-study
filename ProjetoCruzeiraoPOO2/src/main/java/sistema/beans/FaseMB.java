@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
 import enumeration.EnumFaseFormato;
-import enumeration.EnumUsuarioTipo;
 import sistema.modelos.Categoria;
 import sistema.modelos.Fase;
 import sistema.service.FaseService;

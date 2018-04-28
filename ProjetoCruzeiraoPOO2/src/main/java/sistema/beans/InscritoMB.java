@@ -9,11 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
 import enumeration.EnumInscritoTipo;
-import enumeration.EnumUsuarioTipo;
-import sistema.modelos.Categoria;
 import sistema.modelos.Inscricao;
 import sistema.modelos.Inscrito;
-import sistema.service.InscricaoService;
 import sistema.service.InscritoService;
 
 @ManagedBean(eager=true)

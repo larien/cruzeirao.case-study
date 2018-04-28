@@ -6,15 +6,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.DragDropEvent;
 
-import sistema.modelos.Campeonato;
-import sistema.modelos.Categoria;
 import sistema.modelos.Equipe;
-import sistema.modelos.Inscricao;
-import sistema.modelos.Local;
 import sistema.modelos.Usuario;
 import sistema.service.EquipeService;
 
