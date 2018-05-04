@@ -32,7 +32,6 @@ public class InscritoMB {
 		Inscrito = new Inscrito();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void editarInscrito(ActionEvent event)
 	{
 		insc = (Inscricao)event.getComponent().getAttributes().get("inscricao");

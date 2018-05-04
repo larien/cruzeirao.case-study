@@ -39,7 +39,6 @@ public class RodadaMB {
 		return service.getRodadas();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void editarRodada(ActionEvent event)
 	{
 		grupo = (Grupo)event.getComponent().getAttributes().get("grupo");

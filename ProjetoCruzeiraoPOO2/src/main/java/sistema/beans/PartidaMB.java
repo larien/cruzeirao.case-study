@@ -42,7 +42,6 @@ public class PartidaMB {
 		return service.getPartidas();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void editarPartida(ActionEvent event)
 	{
 		rodada = (Rodada)event.getComponent().getAttributes().get("rodada");

@@ -51,15 +51,14 @@ public class JuizMB {
         return EnumJuizTipo.values();
     }
 	
-	@SuppressWarnings("unchecked")
 	public void editarJuiz(ActionEvent event)
 	{
 		camp = (Campeonato)event.getComponent().getAttributes().get("campeonato");
 		if (camp.getJuizes()==null)
 			camp.setJuizes(new ArrayList<Juiz>());
 		service.setJuizes(camp.getJuizes());
-		
 	}
+	@SuppressWarnings("unused")
 	private void setJuizes(List<Juiz> lista) {
 		service.setJuizes(lista);
 	}

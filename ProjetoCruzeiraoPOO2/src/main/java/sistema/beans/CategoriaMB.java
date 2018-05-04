@@ -41,7 +41,7 @@ public class CategoriaMB {
 	}
 	
 	//classe que pega a lista de categoria vindo da data tagle do campeonato
-	@SuppressWarnings("unchecked")
+
 	public void editarCategoria(ActionEvent event)
 	{
 		camp = (Campeonato)event.getComponent().getAttributes().get("campeonato");

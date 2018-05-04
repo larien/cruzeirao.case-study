@@ -37,6 +37,7 @@ public class CampeonatoMB {
 		//System.out.println(campeonato);
 		service.salvar(campeonato);
 		campeonato = new Campeonato();
+		
 	}
 	public void remover(Campeonato campeonato) {
 		service.remove(campeonato);

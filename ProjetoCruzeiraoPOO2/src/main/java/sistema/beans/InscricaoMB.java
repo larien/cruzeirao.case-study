@@ -31,7 +31,6 @@ public class InscricaoMB {
 		Inscricao = new Inscricao();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void editarInscricao(ActionEvent event)
 	{
 		cat = (Categoria)event.getComponent().getAttributes().get("categoria");

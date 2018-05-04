@@ -38,7 +38,7 @@ public class GrupoMB {
 	public List<Grupo> getGrupos() {
 		return service.getGrupos();
 	}
-	@SuppressWarnings("unchecked")
+
 	public void editarGrupo(ActionEvent event)
 	{
 		fase = (Fase)event.getComponent().getAttributes().get("fase");
