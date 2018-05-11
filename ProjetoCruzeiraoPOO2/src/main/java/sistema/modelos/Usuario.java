@@ -48,6 +48,13 @@ public class Usuario implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	@Override
 	public String toString()
 	{
