@@ -19,7 +19,7 @@ public abstract class GenericDAO <T, I extends Serializable> {
     
      public GenericDAO() {
     	
-    	emf = Persistence.createEntityManagerFactory("ProjetoMavenJSFPrimeFaces");
+    	emf = Persistence.createEntityManagerFactory("BancoReserva");
 
 	}
 

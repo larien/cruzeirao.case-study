@@ -3,17 +3,12 @@ package sistema.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
-import sistema.modelos.Campeonato;
+import sistema.DAO.EquipeDAO;
 import sistema.modelos.Equipe;
 
 public class EquipeService {
 
-	private ArrayList <Equipe> equipes = new ArrayList<Equipe>();
+	private EquipeDAO dao = new EquipeDAO();
 	
 	public EquipeService()
 	{
@@ -22,62 +17,30 @@ public class EquipeService {
 	
 	public void salvar(Equipe equipe)
 	{
-		//equipes.add(equipe);
-		/*
-		 * Trecho de codigo implementado para salvar no banco
-		 * */
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory("BancoReservaCreate");
-		EntityManager em = emf.createEntityManager();
-		
-		em.getTransaction().begin();
-	        em.persist(equipe);
-        em.close();
-        em.getTransaction().commit();
+		equipe = dao.save(equipe);
+		dao.closeEntityManager();
+	}
+	
+	public void alterar(Equipe equipe)
+	{
+		dao.save(equipe);
+		dao.closeEntityManager();
 	}
 
 	public void remove(Equipe equipe)
 	{
-		equipes.remove(equipe);
-		EntityManagerFactory emf;
-		Equipe campe;
-		emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-		
-		em.getTransaction().begin();
-			//id
-			campe = em.find(Equipe.class, 1);
-	        em.remove(campe);
-        em.close();
-        em.getTransaction().commit();
+		equipe = dao.getById(Equipe.class, equipe.getId());
+		dao.remove(equipe);
+		dao.closeEntityManager();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List <Equipe> getEquipes()
 	{
-		//return equipes;
-
-		/*
-		 * Trecho de codigo implementado para buscar informacoes do banco
-		 * */
-		List<Equipe> equips;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-
-		em.getTransaction().begin();
-		
-		TypedQuery<Equipe> listaGenerica = (TypedQuery<Equipe>) em.createNativeQuery("select * from Equipe", Equipe.class);
-
-		equips = (List<Equipe>) listaGenerica;
-
-        em.close();
-        emf.close();
-        
-		return equips;
+		List <Equipe> list = dao.getAll(Equipe.class);
+		dao.closeEntityManager();
+		return list;
 	}
 
-	public void setEquipes(ArrayList<Equipe> equipes) {
-		this.equipes = equipes;
-	}
 	
 }

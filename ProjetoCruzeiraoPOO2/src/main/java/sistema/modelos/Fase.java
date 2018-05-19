@@ -15,8 +15,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Fase")
 public class Fase implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -88,6 +90,14 @@ public class Fase implements Serializable {
 
 	public void setFormato(String formato) {
 		this.formato = formato;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

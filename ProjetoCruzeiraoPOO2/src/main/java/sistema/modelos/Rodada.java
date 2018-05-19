@@ -14,8 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Rodada")
 public class Rodada implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -57,6 +59,14 @@ public class Rodada implements Serializable {
 
 	public void setPartidas(List<Partida> partidas) {
 		this.partidas = partidas;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

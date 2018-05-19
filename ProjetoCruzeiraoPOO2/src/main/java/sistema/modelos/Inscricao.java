@@ -14,8 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Inscricao")
 public class Inscricao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -104,5 +106,13 @@ public class Inscricao implements Serializable {
 	@Override
 	public String toString() {
 		return numero + "";
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

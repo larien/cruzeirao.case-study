@@ -1,83 +1,44 @@
 package sistema.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
-import sistema.modelos.Campeonato;
+import sistema.DAO.UsuarioDAO;
 import sistema.modelos.Usuario;
 
 public class UsuarioService {
 
-	private ArrayList <Usuario> Usuarios = new ArrayList<Usuario>();
+	private UsuarioDAO dao = new UsuarioDAO();
 	
 	public UsuarioService()
 	{
 
 	}
 	
-	public void salvar(Usuario Usuario)
+	public void salvar(Usuario usuario)
 	{
-		//Usuarios.add(Usuario);
-		/*
-		 * Trecho de codigo implementado para salvar no banco
-		 * */
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory("BancoReservaCreate");
-		EntityManager em = emf.createEntityManager();
-		
-		em.getTransaction().begin();
-	        em.persist(Usuario);
-        em.close();
-        em.getTransaction().commit();
+		usuario = dao.save(usuario);
+		dao.closeEntityManager();
+	}
+	
+	public void alterar(Usuario cadastro)
+	{
+		dao.save(cadastro);
+		dao.closeEntityManager();
 	}
 
-	public void remove(Usuario Usuario)
+	public void remove(Usuario usuario)
 	{
-		Usuarios.remove(Usuario);
-		EntityManagerFactory emf;
-		Usuario campe;
-		emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-		
-		em.getTransaction().begin();
-			//id
-			campe = em.find(Usuario.class, 1);
-	        em.remove(campe);
-        em.close();
-        em.getTransaction().commit();
+		usuario = dao.getById(Usuario.class, usuario.getId());
+		dao.remove(usuario);
+		dao.closeEntityManager();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List <Usuario> getUsuarios()
 	{
-		//return Usuarios;
-
-		/*
-		 * Trecho de codigo implementado para buscar informacoes do banco
-		 * */
-		List<Usuario> usurs;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-
-		em.getTransaction().begin();
-		
-		TypedQuery<Usuario> listaGenerica = (TypedQuery<Usuario>) em.createNativeQuery("select * from Usuario", Usuario.class);
-
-		usurs = (List<Usuario>) listaGenerica;
-
-        em.close();
-        emf.close();
-        
-		return usurs;
-	}
-
-	public void setUsuarios(ArrayList<Usuario> usuarios) {
-		Usuarios = usuarios;
+		List <Usuario> list = dao.getAll(Usuario.class);
+		dao.closeEntityManager();
+		return list;
 	}
 	
 }

@@ -1,19 +1,14 @@
 package sistema.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
+import sistema.DAO.CategoriaDAO;
 import sistema.modelos.Campeonato;
 import sistema.modelos.Categoria;
 
 public class CategoriaService {
 
-	private List <Categoria> categorias = new ArrayList<Categoria>();
+	private CategoriaDAO dao = new CategoriaDAO();
 	
 	public CategoriaService()
 	{
@@ -22,63 +17,30 @@ public class CategoriaService {
 	
 	public void salvar(Categoria categoria)
 	{
-		//categorias.add(categoria);
-		/*
-		 * Trecho de codigo implementado para salvar no banco
-		 * */
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory("BancoReservaCreate");
-		EntityManager em = emf.createEntityManager();
-		
-		em.getTransaction().begin();
-	        em.persist(categoria);
-        em.close();
-        em.getTransaction().commit();
+		categoria = dao.save(categoria);
+		dao.closeEntityManager();
+	}
+	
+	public void alterar(Categoria categoria)
+	{
+		dao.save(categoria);
+		dao.closeEntityManager();
 	}
 
 	public void remove(Categoria categoria)
 	{
-		categorias.remove(categoria);
-		EntityManagerFactory emf;
-		Categoria campe;
-		emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-		
-		em.getTransaction().begin();
-			//id
-			campe = em.find(Categoria.class, 1);
-	        em.remove(campe);
-        em.close();
-        em.getTransaction().commit();
+		categoria = dao.getById(Categoria.class, categoria.getId());
+		dao.remove(categoria);
+		dao.closeEntityManager();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List <Categoria> getCategorias()
 	{
-		//return categorias;
-
-		/*
-		 * Trecho de codigo implementado para buscar informacoes do banco
-		 * */
-		List<Categoria> categs;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-
-		em.getTransaction().begin();
-		
-		TypedQuery<Categoria> listaGenerica = (TypedQuery<Categoria>) em.createNativeQuery("select * from Categoria", Categoria.class);
-
-		categs = (List<Categoria>) listaGenerica;
-
-        em.close();
-        emf.close();
-        
-		return categs;
+		List <Categoria> list = dao.getAll(Categoria.class);
+		dao.closeEntityManager();
+		return list;
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
-	}
-	
 	
 }

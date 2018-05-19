@@ -48,7 +48,6 @@ public class CategoriaMB {
 
 		if (camp.getCategorias()==null)
 			camp.setCategorias(new ArrayList<Categoria>());
-		service.setCategorias(camp.getCategorias());
 		categoria.setCampeonato(camp);
 	}
 	
@@ -64,9 +63,6 @@ public class CategoriaMB {
 		service.remove(categoria);
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
-		service.setCategorias(categorias);
-	}
 	public List<Categoria> getCategorias() {
 		return service.getCategorias();
 	}
