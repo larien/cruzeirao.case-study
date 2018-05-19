@@ -45,7 +45,7 @@ public class RodadaMB {
 
 		if (grupo.getRodadas()==null)
 			grupo.setRodadas(new ArrayList<Rodada>());
-		service.setRodadas(grupo.getRodadas());
+		//service.setRodadas(grupo.getRodadas());
 		Rodada.setGrupo(grupo);
 	}
 }

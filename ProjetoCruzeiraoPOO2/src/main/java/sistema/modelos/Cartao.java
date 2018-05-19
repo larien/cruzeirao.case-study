@@ -13,10 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import enumeration.EnumCartaoTipo;
 
 @Entity
+@Table(name = "Cartao")
 public class Cartao implements Serializable {
 
 	private static final long serialVersionUID = 1L;

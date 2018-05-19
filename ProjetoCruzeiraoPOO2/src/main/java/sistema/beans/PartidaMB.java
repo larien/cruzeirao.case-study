@@ -48,7 +48,7 @@ public class PartidaMB {
 		
 		if (rodada.getPartidas()==null)
 			rodada.setPartidas(new ArrayList<Partida>());
-		service.setPartidas(rodada.getPartidas());
+		//service.setPartidas(rodada.getPartidas());
 		Partida.setRodada(rodada);
 	}
 

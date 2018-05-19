@@ -45,7 +45,7 @@ public class GrupoMB {
 
 		if (fase.getGrupos()==null)
 			fase.setGrupos(new ArrayList<Grupo>());
-		service.setGrupos(fase.getGrupos());
+		//service.setGrupos(fase.getGrupos());
 		Grupo.setFase(fase);
 	}
 }

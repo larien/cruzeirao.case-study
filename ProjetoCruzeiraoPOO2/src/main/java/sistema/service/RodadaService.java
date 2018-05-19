@@ -1,19 +1,13 @@
 package sistema.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
-import sistema.modelos.Campeonato;
+import sistema.DAO.RodadaDAO;
 import sistema.modelos.Rodada;
 
 public class RodadaService {
 
-	private List <Rodada> rodadas = new ArrayList<Rodada>();
+	private RodadaDAO dao = new RodadaDAO();
 	
 	public RodadaService()
 	{
@@ -22,62 +16,31 @@ public class RodadaService {
 	
 	public void salvar(Rodada rodada)
 	{
-		//rodadas.add(rodada);
-		/*
-		 * Trecho de codigo implementado para salvar no banco
-		 * */
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory("BancoReservaCreate");
-		EntityManager em = emf.createEntityManager();
+		rodada = dao.save(rodada);
+		dao.closeEntityManager();
 		
-		em.getTransaction().begin();
-	        em.persist(rodada);
-        em.close();
-        em.getTransaction().commit();
+	}
+	
+	public void alterar(Rodada rodada)
+	{
+		dao.save(rodada);
+		dao.closeEntityManager();
 	}
 
 	public void remove(Rodada rodada)
 	{
-		rodadas.remove(rodada);
-		EntityManagerFactory emf;
-		Rodada campe;
-		emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-		
-		em.getTransaction().begin();
-			//id
-			campe = em.find(Rodada.class, 1);
-	        em.remove(campe);
-        em.close();
-        em.getTransaction().commit();
+		rodada = dao.getById(Rodada.class, rodada.getId());
+		dao.remove(rodada);
+		dao.closeEntityManager();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List <Rodada> getRodadas()
 	{
-		//return rodadas;
-
-		/*
-		 * Trecho de codigo implementado para buscar informacoes do banco
-		 * */
-		List<Rodada> rods;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("BancoReservaNone");
-		EntityManager em = emf.createEntityManager();
-
-		em.getTransaction().begin();
-		
-		TypedQuery<Rodada> listaGenerica = (TypedQuery<Rodada>) em.createNativeQuery("select * from Rodada", Rodada.class);
-
-		rods = (List<Rodada>) listaGenerica;
-
-        em.close();
-        emf.close();
-        
-		return rods;
+		List <Rodada> list = dao.getAll(Rodada.class);
+		dao.closeEntityManager();
+		return list;
 	}
 
-	public void setRodadas(List<Rodada> list) {
-		this.rodadas = list;
-	}
-	
+
 }

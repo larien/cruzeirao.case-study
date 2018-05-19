@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "Campeonato")
 public class Campeonato implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -11,8 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Gol")
 public class Gol implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -52,6 +54,14 @@ public class Gol implements Serializable {
 
 	public void setPartida(boolean partida) {
 		this.partida = partida;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
