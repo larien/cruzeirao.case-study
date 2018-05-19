@@ -14,8 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Grupo")
 public class Grupo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -66,6 +68,14 @@ public class Grupo implements Serializable {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

@@ -11,8 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Inscrito")
 public class Inscrito implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -87,5 +89,13 @@ public class Inscrito implements Serializable {
 	@Override
 	public String toString() {
 		return tipo + " " + usuario.getNome();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

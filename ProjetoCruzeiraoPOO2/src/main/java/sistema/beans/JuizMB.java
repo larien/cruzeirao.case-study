@@ -56,10 +56,10 @@ public class JuizMB {
 		camp = (Campeonato)event.getComponent().getAttributes().get("campeonato");
 		if (camp.getJuizes()==null)
 			camp.setJuizes(new ArrayList<Juiz>());
-		service.setJuizes(camp.getJuizes());
+		//service.setJuizes(camp.getJuizes());
 	}
 	@SuppressWarnings("unused")
 	private void setJuizes(List<Juiz> lista) {
-		service.setJuizes(lista);
+		//service.setJuizes(lista);
 	}
 }

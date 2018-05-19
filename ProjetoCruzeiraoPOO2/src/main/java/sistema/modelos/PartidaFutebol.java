@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "PartidaFutebol")
 public class PartidaFutebol implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -92,6 +94,14 @@ public class PartidaFutebol implements Serializable {
 
 	public void setCartoesVisitante(List<Cartao> cartoesVisitante) {
 		this.cartoesVisitante = cartoesVisitante;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

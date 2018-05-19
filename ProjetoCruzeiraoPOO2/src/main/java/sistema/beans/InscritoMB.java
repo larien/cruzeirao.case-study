@@ -37,7 +37,7 @@ public class InscritoMB {
 		insc = (Inscricao)event.getComponent().getAttributes().get("inscricao");
 		if(insc.getInscritos()==null)
 			insc.setInscritos(new ArrayList<Inscrito>());	
-		service.setInscritos(insc.getInscritos());
+		//service.setInscritos(insc.getInscritos());
 		Inscrito.setInscricao(insc);
 	}
 	

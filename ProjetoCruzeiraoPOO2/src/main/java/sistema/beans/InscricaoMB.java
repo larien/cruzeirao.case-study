@@ -36,7 +36,7 @@ public class InscricaoMB {
 		cat = (Categoria)event.getComponent().getAttributes().get("categoria");
 		if(cat.getInscricoes()==null)
 			cat.setInscricoes(new ArrayList<Inscricao>());
-		service.setInscricoes(cat.getInscricoes());
+		//service.setInscricoes(cat.getInscricoes());
 		Inscricao.setCategoria(cat);
 	}
 	
@@ -56,7 +56,7 @@ public class InscricaoMB {
 	}
 	public void setInscricoes(ArrayList<Inscricao> incricoes)
 	{
-		service.setInscricoes(incricoes);
+		//service.setInscricoes(incricoes);
 	}
 	
 	
