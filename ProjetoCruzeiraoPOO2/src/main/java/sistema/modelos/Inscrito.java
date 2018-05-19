@@ -27,11 +27,11 @@ public class Inscrito implements Serializable {
 	private String tipo;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "INSCRITOUSUARIO_ID", referencedColumnName = "ID") })
 	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "INSCRITOINSCRICAO_ID", referencedColumnName = "ID") })
 	private Inscricao inscricao;
 
 	private boolean aceiteUsuario;

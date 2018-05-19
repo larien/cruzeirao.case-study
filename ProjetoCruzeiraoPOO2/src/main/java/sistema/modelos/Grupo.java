@@ -29,11 +29,11 @@ public class Grupo implements Serializable {
 
 	private String nome;
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "GRUPOFASE_ID", referencedColumnName = "ID") })
 	private Fase fase;
 
 	@ManyToMany
-	@JoinTable(name = "Rodada")
+	@JoinTable(name = "GrupoXRodada")
 	private List<Rodada> rodadas;
 
 	private int numero;

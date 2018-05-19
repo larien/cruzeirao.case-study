@@ -35,11 +35,11 @@ public class Fase implements Serializable {
 	private String formato;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "FASECATEGORIA_ID", referencedColumnName = "ID") })
 	private Categoria categoria;
 
 	@ManyToMany
-	@JoinTable(name = "Grupo")
+	@JoinTable(name = "FaseXGrupo")
 	private List<Grupo> grupos;
 
 	private int numero;

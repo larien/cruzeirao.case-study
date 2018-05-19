@@ -30,11 +30,11 @@ public class Rodada implements Serializable {
 	private int numero;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "RODADAGRUPO_ID", referencedColumnName = "ID") })
 	private Grupo grupo;
 
 	@ManyToMany
-	@JoinTable(name = "Partida")
+	@JoinTable(name = "RodadaXPartida")
 	private List<Partida> partidas;
 
 	public int getNumero() {

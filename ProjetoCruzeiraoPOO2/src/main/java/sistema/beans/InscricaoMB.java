@@ -36,7 +36,6 @@ public class InscricaoMB {
 		cat = (Categoria)event.getComponent().getAttributes().get("categoria");
 		if(cat.getInscricoes()==null)
 			cat.setInscricoes(new ArrayList<Inscricao>());
-		//service.setInscricoes(cat.getInscricoes());
 		Inscricao.setCategoria(cat);
 	}
 	

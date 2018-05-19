@@ -31,20 +31,20 @@ public class Partida implements Serializable {
 	private int numero;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "PARTIDAINSCRICAOMANDANTE_ID", referencedColumnName = "ID") })
 	private Inscricao equipeMandante;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "PARTIDAINSCRICAOVISITANTE_ID", referencedColumnName = "ID") })
 	private Inscricao equipeVisitante;
 	private Date data;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "LOCAL_ID", referencedColumnName = "ID") })
 	private Local local;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "PARTIDA_ID", referencedColumnName = "ID") })
 	private Partida proxPartida;
 
 	@ManyToMany
@@ -52,12 +52,12 @@ public class Partida implements Serializable {
 	private List<Juiz> juizes;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "PARTIDAGRUPO_ID", referencedColumnName = "ID") })
 	private Grupo grupo;
 	private String relatoJuiz;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "PARTIDARODADA_ID", referencedColumnName = "ID") })
 	private Rodada rodada;
 
 	public int getNumero() {

@@ -25,7 +25,7 @@ public class Gol implements Serializable {
 	private int id;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "GOLINSCRITO_ID", referencedColumnName = "ID") })
 	private Inscrito inscrito;
 
 	private int tempo;

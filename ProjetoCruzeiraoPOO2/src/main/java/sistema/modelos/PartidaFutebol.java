@@ -25,27 +25,27 @@ public class PartidaFutebol implements Serializable {
 	private int id;
 
 	@ManyToMany
-	@JoinTable(name = "Gol")
+	@JoinTable(name = "PartidaFutebolXGolMandates")
 	private List<Gol> golsMandantes;
 
 	@ManyToMany
-	@JoinTable(name = "Gol")
+	@JoinTable(name = "PartidaFutebolXGolVisitantes")
 	private List<Gol> golsVisitantes;
 
 	@ManyToMany
-	@JoinTable(name = "Gol")
+	@JoinTable(name = "PartidaFutebolXGolPenalteMandantes")
 	private List<Gol> golsPenaltesMandantes;
 
 	@ManyToMany
-	@JoinTable(name = "Gol")
+	@JoinTable(name = "PartidaFutebolXGolPenalteVisitantes")
 	private List<Gol> golsPenaltesVisitantes;
 
 	@ManyToMany
-	@JoinTable(name = "Cartao")
+	@JoinTable(name = "PartidaFutebolXCartaoMandantes")
 	private List<Cartao> cartoesMandante;
 
 	@ManyToMany
-	@JoinTable(name = "Cartao")
+	@JoinTable(name = "PartidaFutebolXCartaoVisititantes")
 	private List<Cartao> cartoesVisitante;
 
 	public List<Gol> getGolsMandantes() {

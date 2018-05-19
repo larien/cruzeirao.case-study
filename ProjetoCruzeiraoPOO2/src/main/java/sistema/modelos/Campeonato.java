@@ -30,15 +30,15 @@ public class Campeonato implements Serializable {
 	private String nome;
 
 	@ManyToMany
-	@JoinTable(name = "Local")
+	@JoinTable(name = "CampeonatoXLocal")
 	private List<Local> locais;
 
 	@ManyToMany
-	@JoinTable(name = "Juiz")
+	@JoinTable(name = "CampeonatoXJuiz")
 	private List<Juiz> juizes;
 
 	@ManyToMany
-	@JoinTable(name = "Categoria")
+	@JoinTable(name = "CampeonatoXCategoria")
 	private List<Categoria> categorias;
 
 	@Temporal(TemporalType.DATE)

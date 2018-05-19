@@ -32,11 +32,11 @@ public class Inscricao implements Serializable {
 	private boolean validada;
 
 	@ManyToMany
-	@JoinTable(name = "Inscrito")
+	@JoinTable(name = "InscricaoXInscrito")
 	private List<Inscrito> inscritos;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "INSCRICAOCATEGORIA_ID", referencedColumnName = "ID") })
 	private Categoria categoria;
 
 	@ManyToMany
@@ -44,7 +44,7 @@ public class Inscricao implements Serializable {
 	private List<Partida> partidas;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "INSCRICAOEQUIPE_ID", referencedColumnName = "ID") })
 	private Equipe equipe;
 
 	public long getNumero() {

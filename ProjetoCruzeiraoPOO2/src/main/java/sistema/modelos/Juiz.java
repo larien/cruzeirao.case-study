@@ -26,7 +26,7 @@ public class Juiz implements Serializable {
 
 	private String tipo;
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "JUIZUSUARIO_ID", referencedColumnName = "ID") })
 	private Usuario usuario;
 
 	public Usuario getUsuario() {

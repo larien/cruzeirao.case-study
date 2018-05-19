@@ -34,15 +34,15 @@ public class Categoria implements Serializable {
 	private int nascidosApartirDe;
 
 	@ManyToMany
-	@JoinTable(name = "Inscricao")
+	@JoinTable(name = "CategoriaXInscricao")
 	private List<Inscricao> inscricoes;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "CATEGORIACAMPEONATO_ID", referencedColumnName = "ID") })
 	private Campeonato campeonato;
 
 	@ManyToMany
-	@JoinTable(name = "Fase")
+	@JoinTable(name = "CategoriaXFase")
 	private List<Fase> fases;
 
 	private int minJogadores;

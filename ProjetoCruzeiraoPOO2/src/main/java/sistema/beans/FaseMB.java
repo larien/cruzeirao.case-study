@@ -45,7 +45,6 @@ public class FaseMB {
 
 		if (categoria.getFases()==null)
 			categoria.setFases(new ArrayList<Fase>());
-		//service.setFases(categoria.getFases());
 		Fase.setCategoria(categoria);
 	}
 

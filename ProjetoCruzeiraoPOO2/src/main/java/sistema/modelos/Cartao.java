@@ -29,7 +29,7 @@ public class Cartao implements Serializable {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "CARTAOINSCRITO_ID", referencedColumnName = "ID") })
 	private Inscrito inscrito;
 
 	private Enumeration<EnumCartaoTipo> tipo;

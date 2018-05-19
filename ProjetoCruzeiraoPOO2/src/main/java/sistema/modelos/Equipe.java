@@ -40,7 +40,7 @@ public class Equipe implements Serializable {
 	private String cidade;
 
 	@ManyToMany
-	@JoinTable(name = "Usuario")
+	@JoinTable(name = "EquipeXUsuario")
 	private List<Usuario> diretores;
 
 	public String getNome() {
